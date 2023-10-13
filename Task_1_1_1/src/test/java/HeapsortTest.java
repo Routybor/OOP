@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-class MainTest {
+class HeapsortTest {
     @Test
     void heapsort_one_elem_test() {
         int[] ans = solution.heapsort(new int[] {1});
