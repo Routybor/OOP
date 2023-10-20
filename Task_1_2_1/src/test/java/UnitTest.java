@@ -1,15 +1,15 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ConcurrentModificationException;
-import java.util.List;
-import java.util.Objects;
-import org.junit.jupiter.api.Assertions;
-import java.util.NoSuchElementException;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit Tests.
@@ -31,7 +31,7 @@ public class UnitTest {
     }
 
     @Test
-    void dfsIteratortest() {
+    void test1() {
         Tree<String> testTree1 = sampleTree();
         List<String> fromDfs = new ArrayList<>();
         Iterator<String> iterator = testTree1.iteratorDFS();
@@ -51,7 +51,7 @@ public class UnitTest {
     }
 
     @Test
-    void bfsIteratortest() {
+    void test2() {
         Tree<String> testTree1 = sampleTree();
         List<String> fromBfs = new ArrayList<>();
         Iterator<String> iterator = testTree1.iteratorBFS();
@@ -70,23 +70,23 @@ public class UnitTest {
     }
 
     @Test()
-    void dfsModtest() {
+    void test3() {
         Tree<String> testTree1 = sampleTree();
-        Iterator<String> myIteratorDFS = testTree1.iteratorDFS();
+        Iterator<String> interpreter = testTree1.iteratorDFS();
         testTree1.addChild("DFS");
-        assertThrows(ConcurrentModificationException.class, myIteratorDFS::next);
+        assertThrows(ConcurrentModificationException.class, interpreter::next);
     }
 
     @Test()
-    void bfsModtest() {
+    void test4() {
         Tree<String> testTree1 = sampleTree();
-        Iterator<String> myIteratorBFS = testTree1.iteratorBFS();
+        Iterator<String> interpreter = testTree1.iteratorBFS();
         testTree1.addChild("BFS");
-        assertThrows(ConcurrentModificationException.class, myIteratorBFS::next);
+        assertThrows(ConcurrentModificationException.class, interpreter::next);
     }
 
     @Test
-    void equalTEST1() {
+    void test5() {
         Tree<String> testTree1 = sampleTree();
         Tree<String> testTree2 = new Tree<>("R1");
         testTree2.addChild("A");
@@ -98,7 +98,7 @@ public class UnitTest {
     }
 
     @Test
-    void notEqualTEST2() {
+    void test6() {
         Tree<String> testTree1 = new Tree<>("R1");
         var a = testTree1.addChild("A");
         var b = a.addChild("B");
@@ -111,7 +111,7 @@ public class UnitTest {
     }
 
     @Test
-    void elementsNotEqualTEST() {
+    void test7() {
         Tree<String> testTree1 = sampleTree();
         Tree<String> testTree2 = sampleTree();
         testTree1.addChild("ANOTHER_ONE");
@@ -120,7 +120,7 @@ public class UnitTest {
     }
 
     @Test
-    void nodeInstanceOfTreeTEST() {
+    void test8() {
         Tree<String> testTree1 = new Tree<>("R1");
         var a = testTree1.addChild("A");
         a.addChild("B");
@@ -132,7 +132,7 @@ public class UnitTest {
     }
 
     @Test
-    void emptyEqualTEST() {
+    void test9() {
         Tree<String> testTree1 = new Tree<>("VOID");
         testTree1.remove();
         Tree<String> testTree2 = new Tree<>("VOID");
@@ -141,7 +141,7 @@ public class UnitTest {
     }
 
     @Test
-    void sizeNotEqualTEST() {
+    void test10() {
         Tree<String> testTree1 = sampleTree();
         Tree<String> testTree2 = sampleTree();
         testTree1.addChild("ANOTHER_ONE");
@@ -149,7 +149,7 @@ public class UnitTest {
     }
 
     @Test
-    void removeChildTEST() {
+    void test11() {
         Tree<String> testTree1 = sampleTree();
         Tree<String> testTree2 = sampleTree();
         testTree1.addChild("ANOTHER_ONE");
@@ -158,7 +158,7 @@ public class UnitTest {
     }
 
     @Test
-    void removeNotExistedChildTEST() {
+    void test12() {
         Tree<String> testTree1 = sampleTree();
         Tree<String> testTree2 = sampleTree();
         testTree1.addChild("ANOTHER_ONE");
@@ -167,7 +167,7 @@ public class UnitTest {
     }
 
     @Test
-    void iteratorDFSNoNextTEST() {
+    void test13() {
         Tree<String> testTree1 = sampleTree();
         Iterator<String> iterator = testTree1.iteratorDFS();
         while (iterator.hasNext()) {
@@ -181,7 +181,7 @@ public class UnitTest {
     }
 
     @Test
-    void iteratorBFSNoNextTEST() {
+    void test14() {
         Tree<String> testTree1 = sampleTree();
         Iterator<String> iterator = testTree1.iteratorBFS();
         while (iterator.hasNext()) {
