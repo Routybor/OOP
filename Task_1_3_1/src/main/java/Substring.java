@@ -3,7 +3,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,22 +54,5 @@ public class Substring {
         }
 
         return indexes;
-    }
-
-    /**
-     * Пример использования функции.
-     *
-     * @param args Аргументы.
-     */
-    public static void main(String[] args) {
-        try {
-            List<Integer> result = find("src/main/resources/input.txt", "try");
-            System.out.println("try = " + result);
-
-            result = find("src/main/resources/input.txt", "хаха");
-            System.out.println("xaxa = " + result);
-        } catch (IOException e) {
-            System.err.println(e);
-        }
     }
 }
