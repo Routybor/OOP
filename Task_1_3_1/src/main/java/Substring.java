@@ -3,6 +3,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,12 +24,13 @@ public class Substring {
         List<Integer> indexes = new ArrayList<>();
         // для поддержки UTF-8, из строки получается массив байтов
         byte[] substringBytes = substring.getBytes(StandardCharsets.UTF_8);
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[10];
 
         // открывается поток для чтения файла
         try (var inputStream = Files.newInputStream(Path.of(fileName))) {
             int bytesRead;
             int indexesSize = 0;
+            int totalBytesRead = 0;
 
             // файл считывается по частям в буфер
             while ((bytesRead = inputStream.read(buffer)) != -1) {
@@ -40,7 +42,7 @@ public class Substring {
                         // найдено совпадение => продолжается проверка следующих байтов подстроки
                         if (indexesSize == substringBytes.length) {
                             // Найдено полное вхождение подстроки, сохраняется позицию
-                            indexes.add(i - indexesSize + 1);
+                            indexes.add(totalBytesRead + i - indexesSize + 1);
                             indexesSize = 0;
                         }
                     } else {
@@ -48,6 +50,7 @@ public class Substring {
                         indexesSize = 0;
                     }
                 }
+                totalBytesRead += bytesRead;
             }
         }
 
@@ -61,8 +64,8 @@ public class Substring {
      */
     public static void main(String[] args) {
         try {
-            List<Integer> result = find("src/main/resources/input.txt", "DDD");
-            System.out.println("DDD = " + result);
+            List<Integer> result = find("src/main/resources/input.txt", "try");
+            System.out.println("try = " + result);
 
             result = find("src/main/resources/input.txt", "хаха");
             System.out.println("xaxa = " + result);
