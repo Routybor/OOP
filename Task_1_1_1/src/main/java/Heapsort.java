@@ -36,7 +36,7 @@ public class Heapsort {
         }
         int expectedIterations = (int) (index * (Math.log(index) / Math.log(2)));
         System.out.printf("Всего итераций:     %d + %d = %d%n", iterationCount1, iterationCount2,
-                                                                    iterationCount1 + iterationCount2);
+                                                              iterationCount1 + iterationCount2);
         System.out.printf("Ожидаемо итераций : %d%n", expectedIterations);
         return arr;
     }
