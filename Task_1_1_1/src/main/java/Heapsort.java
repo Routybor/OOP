@@ -1,3 +1,9 @@
+/**
+ * Соровка массива с использованием сортировки кучей.
+ *
+ * @param arr Массив, который необходимо отсортировать.
+ * @return Отсортированный массив.
+ */
 public class Heapsort {
     private static int iterationCount1 = 0;
     private static int iterationCount2 = 0;
@@ -6,12 +12,6 @@ public class Heapsort {
         System.out.println("===== HEAPSORT INITIATED =====");
     }
 
-    /**
-     * Соровка массива с использованием сортировки кучей.
-     *
-     * @param arr Массив, который необходимо отсортировать.
-     * @return Отсортированный массив.
-     */
     static int[] heapsort(int[] arr) {
         iterationCount1 = 0;
         iterationCount2 = 0;
@@ -31,9 +31,10 @@ public class Heapsort {
         } else {
             index = 0;
         }
-
-        System.out.printf("Total iterations:     %d + %d = %d%n", iterationCount1, iterationCount2, iterationCount1 + iterationCount2);
-        System.out.printf("Expected iterations : %.0f%n", (index + 1) * (Math.log(index + 1) / Math.log(2)));
+        int expectedIterations = (int) (index * (Math.log(index) / Math.log(2)));
+        System.out.printf("Всего итераций:     %d + %d = %d%n", iterationCount1, iterationCount2,
+                                                                         iterationCount1 + iterationCount2);
+        System.out.printf("Ожидаемо итераций : %.0f%n", expectedIterations);
         return arr;
     }
 

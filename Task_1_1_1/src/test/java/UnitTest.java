@@ -1,7 +1,11 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Random;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Юнит тесты для проверки сортировки
+ */
 public class UnitTest {
     @Test
     void heapsort_one_elem_test() {
@@ -29,9 +33,10 @@ public class UnitTest {
             int[] ans = Heapsort.heapsort(sortArray);
             long endTime = System.nanoTime(); // Замер времени
             times[i] = endTime - startTime;
-            Arrays.sort(sortArray); // Сверяю с сортировкой из библиотеки, ведь не могу предопределить результат
+            // Сверяю с сортировкой из библиотеки, ведь не могу предопределить результат
+            Arrays.sort(sortArray);
             Assertions.assertArrayEquals(sortArray, ans);
-            System.out.printf("Time to sort array of length = %d = %d ms%n", length, times[i] / 1_000_000);
+            System.out.printf("Время для массива длины %d = %d мс%n", length, times[i] / 1000000);
         }
 
         // Рассчет разницы во времени, на практике непостоянна, так как массив из случайных чисел
@@ -39,8 +44,8 @@ public class UnitTest {
         double log2After = Math.log(sizes[1]) / Math.log(2); // Так как log в Math с основанием e
         double expectedTimeIncrease = (sizes[1] * log2After) / (sizes[0] * log2Before);
         double actualTimeIncrease = (double) times[1] / times[0];
-        System.out.printf("Expected time increase = %f%n", expectedTimeIncrease);
-        System.out.printf("Actual time increase = %f%n", actualTimeIncrease);
+        System.out.printf("Ожидаемое увеличение времени = %f%n", expectedTimeIncrease);
+        System.out.printf("Реальное увеличение времени = %f%n", actualTimeIncrease);
     }
 
     @Test
