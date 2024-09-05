@@ -1,8 +1,5 @@
 /**
- * Соровка массива с использованием сортировки кучей.
- *
- * @param arr Массив, который необходимо отсортировать.
- * @return Отсортированный массив.
+ * Реализация пирамидальной сортировки.
  */
 public class Heapsort {
     private static int iterationCount1 = 0;
@@ -12,6 +9,12 @@ public class Heapsort {
         System.out.println("===== HEAPSORT INITIATED =====");
     }
 
+    /**
+     * Соровка массива с использованием сортировки кучей.
+     *
+     * @param arr Массив, который необходимо отсортировать.
+     * @return Отсортированный массив.
+     */
     static int[] heapsort(int[] arr) {
         iterationCount1 = 0;
         iterationCount2 = 0;
