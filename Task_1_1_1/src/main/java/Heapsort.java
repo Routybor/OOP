@@ -33,8 +33,8 @@ public class Heapsort {
         }
         int expectedIterations = (int) (index * (Math.log(index) / Math.log(2)));
         System.out.printf("Всего итераций:     %d + %d = %d%n", iterationCount1, iterationCount2,
-                                                                         iterationCount1 + iterationCount2);
-        System.out.printf("Ожидаемо итераций : %.0f%n", expectedIterations);
+                                                                    iterationCount1 + iterationCount2);
+        System.out.printf("Ожидаемо итераций : %d%n", expectedIterations);
         return arr;
     }
 
@@ -44,7 +44,7 @@ public class Heapsort {
      * @param arr Массив, содержащий поддерево для преобразования в кучу.
      * @param n   Размер поддерева.
      * @param i   Индекс корня поддерева.
-     * @param loop Номер цикла, который вызывает функцию
+     * @param loop Номер цикла, который вызывает функцию.
      */
     public static void heapify(int[] arr, int n, int i, int loop) {
         int largest = i;

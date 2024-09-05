@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Юнит тесты для проверки сортировки
+ * Юнит тесты для проверки сортировки.
  */
 public class UnitTest {
     @Test
