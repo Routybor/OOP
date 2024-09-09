@@ -19,10 +19,14 @@ public class Heapsort {
         System.out.print("Размер массива = ");
         int[] arr = new int[scan.nextInt()];
         System.out.print("Перечислите элементы = ");
-        for (int i = 0; i < arr.length; i++) arr[i] = scan.nextInt();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = scan.nextInt();
+        }
         heapsort(arr);
         System.out.print("Результат = ");
-        for (int i : arr) System.out.print(i + " ");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
     }
 
     /**
