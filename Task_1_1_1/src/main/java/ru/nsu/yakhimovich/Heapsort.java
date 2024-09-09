@@ -1,3 +1,6 @@
+package ru.nsu.yakhimovich;
+
+import java.util.Scanner;
 /**
  * Реализация пирамидальной сортировки.
  */
@@ -7,6 +10,19 @@ public class Heapsort {
 
     public static void main(String[] args) {
         System.out.println("===== HEAPSORT INITIATED =====");
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Размер массива = ");
+        int size = scan.nextInt();
+        int[] arr = new int[size];
+        System.out.print("Перечислите элементы = ");
+        for (int i = 0; i < size; i++) {
+            arr[i] = scan.nextInt();
+        }
+        heapsort(arr);
+        System.out.print("Результат = ");
+        for (int i : arr) {
+            System.out.printf("%d ", i);
+        }
     }
 
     /**

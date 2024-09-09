@@ -1,3 +1,5 @@
+package ru.nsu.yakhimovich;
+
 import java.util.Arrays;
 import java.util.Random;
 import org.junit.jupiter.api.Assertions;
@@ -8,14 +10,14 @@ import org.junit.jupiter.api.Test;
  */
 public class UnitTest {
     @Test
-    void heapsort_one_elem_test() {
+    void heapsortOneElemTest() {
         System.out.println("===== TEST 1 =====");
         int[] ans = Heapsort.heapsort(new int[]{1});
         Assertions.assertArrayEquals(new int[]{1}, ans);
     }
 
     @Test
-    void heapsort_big_array_test() {
+    void heapsortBigArrayTest() {
         System.out.println("===== TEST 2 =====");
         int[] sizes = {2_000_000, 16_000_000};
         long[] times = new long[sizes.length];
@@ -49,14 +51,14 @@ public class UnitTest {
     }
 
     @Test
-    void heapsort_empty_test() {
+    void heapsortEmptyTest() {
         System.out.println("===== TEST 3 =====");
         Assertions.assertArrayEquals(new int[]{},
                 Heapsort.heapsort(new int[]{}));
     }
 
     @Test
-    void heapsort__is_correct_test() {
+    void heapsortIsCorrectTest() {
         System.out.println("===== TEST 4 =====");
         int[] ans = Heapsort.heapsort(new int[]{0, 148, -137, -177, 2, 23});
         Assertions.assertArrayEquals(new int[]{-177, -137, 0, 2, 23, 148}, ans);

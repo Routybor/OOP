@@ -1,4 +1,4 @@
 launch:
-	javadoc -d doc src/main/java/Heapsort.java
-	javac -d build src/main/java/Heapsort.java
+	javadoc -d doc src/main/java/ru/nsu/yakhimovich/Heapsort.java
+	javac -d build src/main/java/ru/nsu/yakhimovich/Heapsort.java
 	java -cp build Heapsort
