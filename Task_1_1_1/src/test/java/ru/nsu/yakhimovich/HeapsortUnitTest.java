@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Юнит тесты для проверки сортировки.
  */
-public class UnitTest {
+public class HeapsortUnitTest {
     @Test
     void heapsortOneElemTest() {
         System.out.println("===== TEST 1 =====");
@@ -19,7 +19,7 @@ public class UnitTest {
     @Test
     void heapsortBigArrayTest() {
         System.out.println("===== TEST 2 =====");
-        int[] sizes = {2_000_000, 16_000_000};
+        int[] sizes = {2000000, 3000000, 5000000};
         long[] times = new long[sizes.length];
 
         for (int i = 0; i < sizes.length; i++) {
