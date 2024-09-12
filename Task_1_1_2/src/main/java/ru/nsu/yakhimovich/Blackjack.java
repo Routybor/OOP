@@ -30,7 +30,8 @@ public class Blackjack {
      */
     public void startRound(int round, int[] score) {
         String scoreResult;
-        int playerResult, dealerResult;
+        int playerResult;
+        int dealerResult;
 
         System.out.println("Добро пожаловать в Блэкджек!");
         System.out.printf("Раунд %d%nДилер раздал карты%n", round);
