@@ -48,12 +48,17 @@ public class Blackjack {
                     case -1:
                         score[0]++;
                         break;
+                    default:
+                        break;
                 }
+                break;
             case 1:
                 score[0]++;
                 break;
             case -1:
                 score[1]++;
+                break;
+            default:
                 break;
         }
         if (score[0] > score[1]) {
