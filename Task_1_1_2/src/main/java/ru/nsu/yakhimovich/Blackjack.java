@@ -30,18 +30,16 @@ public class Blackjack {
      */
     public void startRound(int round, int[] score) {
         String scoreResult;
-        int playerResult;
-        int dealerResult;
 
         System.out.println("Добро пожаловать в Блэкджек!");
         System.out.printf("Раунд %d%nДилер раздал карты%n", round);
         initHands();
         System.out.printf("Ваши карты: %s%n", playerHand);
         System.out.printf("Карты дилера: %s%n", dealerHand.closedHand());
-        playerResult = playerTurn();
+        int playerResult = playerTurn();
         switch (playerResult) {
             case 0:
-                dealerResult = dealerTurn();
+                int dealerResult = dealerTurn();
                 switch (dealerResult) {
                     case 1:
                         score[1]++;
