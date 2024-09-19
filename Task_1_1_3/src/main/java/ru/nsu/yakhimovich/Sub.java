@@ -36,7 +36,7 @@ class Sub extends Expression {
      * @return результат означивания
      */
     @Override
-    public int eval(String variables) {
+    public double eval(String variables) {
         return left.eval(variables) - right.eval(variables);
     }
 
@@ -58,5 +58,36 @@ class Sub extends Expression {
     @Override
     public void print() {
         System.out.println(this);
+    }
+
+    /**
+     * Упрощение разности:
+     * 1) разность двух чисел.
+     * 2) вычитаемое = 0.
+     * 3) уменьшаемое == вычитаемое.
+     *
+     * @return упрощенное значение
+     */
+    @Override
+    public Expression simplify() {
+        Expression simpleLeft = left.simplify();
+        Expression simpleRight = right.simplify();
+
+        // Разность констант
+        if (simpleLeft instanceof Number && simpleRight instanceof Number) {
+            return new Number(simpleLeft.eval("") - simpleRight.eval(""));
+        }
+
+        // Вычитание одинаковых выражений
+        if (simpleLeft.equals(simpleRight)) {
+            return new Number(0);
+        }
+
+        // Вычитание 0
+        if (simpleRight instanceof Number && simpleRight.eval("") == 0) {
+            return simpleLeft;
+        }
+
+        return new Sub(simpleLeft, simpleRight);
     }
 }

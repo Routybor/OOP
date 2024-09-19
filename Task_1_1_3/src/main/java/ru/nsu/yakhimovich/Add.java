@@ -36,7 +36,7 @@ class Add extends Expression {
      * @return результат означивания
      */
     @Override
-    public int eval(String variables) {
+    public double eval(String variables) {
         return left.eval(variables) + right.eval(variables);
     }
 
@@ -58,5 +58,37 @@ class Add extends Expression {
     @Override
     public void print() {
         System.out.println(this);
+    }
+
+    /**
+     * Упрощение суммы:
+     * 1) сумма двух чисел.
+     * 2) одно из слагаемых = 0.
+     *
+     * @return упрощенное значение
+     */
+    @Override
+    public Expression simplify() {
+        Expression simpleLeft = left.simplify();
+        Expression simpleRight = right.simplify();
+
+        // Сложение констант
+        if (simpleLeft instanceof Number && simpleRight instanceof Number) {
+            return new Number(simpleLeft.eval("") + simpleRight.eval(""));
+        }
+
+        /*
+           Добавление 0.
+           Используется означивание по пустой строке, чтобы получить значение чисел.
+           Перед получением значения необходимо удостовериться, что это число.
+           Если этого не сделать - программа упадет, ведь попытается означить несущ переменную.
+        */
+        if (simpleLeft instanceof Number && simpleLeft.eval("") == 0) {
+            return simpleRight;
+        }
+        if (simpleRight instanceof Number && simpleRight.eval("") == 0) {
+            return simpleLeft;
+        }
+        return new Add(simpleLeft, simpleRight);
     }
 }

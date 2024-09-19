@@ -1,20 +1,21 @@
 package ru.nsu.yakhimovich;
 
+import java.util.Scanner;
+
 /**
- * Класс, проверяющий корректность сборки.
+ * Сканирование выражение из терминала и вывод получившегося объекта.
  */
 public class Main {
     /**
-     * Проверка корректной сборки и работы программы.
+     * Класс.
      *
      * @param args аргументы командной строки
      */
     public static void main(String[] args) {
-        String expressionStr = "3 +( 2 * x + 2) * y";
-        Expression e = ExpressionParser.parse(expressionStr);
-
-        e.print(); // (3+(((2*x)+2)*y))
-        System.out.println();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите выражение = ");
+        String inputExpression = scanner.nextLine();
+        Expression parsedExpression = ExpressionParser.parse(inputExpression);
+        System.out.printf("%nСоздано выражение = %s%n ", parsedExpression);
     }
 }
-

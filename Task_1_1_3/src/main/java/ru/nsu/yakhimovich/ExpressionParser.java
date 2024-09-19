@@ -80,11 +80,15 @@ class ExpressionParser {
             ind++;
             result = parseExpression();
             ind++; // Отбрасывание ')'
-        } else if (Character.isDigit(input.charAt(ind))) { // Числа
-            while (ind < input.length() && Character.isDigit(input.charAt(ind))) {
+        } else if (Character.isDigit(input.charAt(ind)) || input.charAt(ind) == '.') { // Числа с учетом десятичных точек
+            boolean hasDot = false;
+            while (ind < input.length() && (Character.isDigit(input.charAt(ind)) || (!hasDot && input.charAt(ind) == '.'))) {
+                if (input.charAt(ind) == '.') {
+                    hasDot = true;
+                }
                 sb.append(input.charAt(ind++));
             }
-            result = new Number(Integer.parseInt(sb.toString()));
+            result = new Number(Double.parseDouble(sb.toString()));
         } else { // Переменные
             while (ind < input.length() && Character.isLetter(input.charAt(ind))) {
                 sb.append(input.charAt(ind++));

@@ -8,6 +8,7 @@ class Variable extends Expression {
 
     /**
      * Конструктор создает переменную с указанным именем.
+     *
      * @param name имя переменной
      */
     public Variable(String name) {
@@ -16,6 +17,7 @@ class Variable extends Expression {
 
     /**
      * Производная переменной.
+     *
      * @param variable имя переменной по которой берется производная
      * @return производная переменной 0/1
      */
@@ -30,11 +32,12 @@ class Variable extends Expression {
 
     /**
      * Означивание переменных и подставка значений в выражение.
+     *
      * @param variables переменные и их значения
      * @return результат выражения с подставленными значениями
      */
     @Override
-    public int eval(String variables) {
+    public double eval(String variables) {
         String[] varAssignments = variables.split(";");
         for (String assignment : varAssignments) {
             String[] parts = assignment.trim().split("=");
@@ -47,6 +50,7 @@ class Variable extends Expression {
 
     /**
      * Стоковое значение имени переменной.
+     *
      * @return имя переменной
      */
     @Override
@@ -61,5 +65,29 @@ class Variable extends Expression {
     public void print() {
         System.out.println(name);
     }
-}
 
+    /**
+     * Упрощение переменной, на деле - возвращение самой переменной.
+     *
+     * @return переменная
+     */
+    @Override
+    public Expression simplify() {
+        return this; // Переменная не упрощается
+    }
+
+    /**
+     * Сравнивание переменных.
+     * Оригинальное работает не так как необходимо.
+     *
+     * @param obj сравниваемый объект
+     * @return True/False
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Variable variable = (Variable) obj;
+        return name.equals(variable.name); // Сравнивание переменных по именам
+    }
+}

@@ -1,13 +1,14 @@
 package ru.nsu.yakhimovich;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Юнит тесты для проверки методов класса.
  */
 public class ExpressionUnitTest {
-    Expression expression = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
+    String expressionStr = "3+2*x";
+    Expression expression = ExpressionParser.parse(expressionStr);
 
     @Test
     void printTest1() {
@@ -26,24 +27,26 @@ public class ExpressionUnitTest {
 
     @Test
     void printTest2() {
-        System.out.println("Печать выражения");
-        expression = new Sub(new Number(3), new Div(new Number(2), new Variable("x")));
-        expression.print();
-        Assertions.assertEquals(expression.toString(), "(3-(2/x))");
+        System.out.println("Упрощение выражения");
+        expressionStr = "(x-0)*1-1*x - x*0-0*x + (3-3) + 3/3-1/1 + (x/1-0/x)/x";
+        expression = ExpressionParser.parse(expressionStr);
+        Expression simple = expression.simplify();
+        simple.print();
+        Assertions.assertEquals(simple.toString(), "0");
     }
 
     @Test
     void evalTest() {
-        System.out.println("Вычисление выражения при x = 10");
-        int result = expression.eval("x=10; y=13");
+        System.out.println("Вычисление выражения при x = 10 y = 13");
+        double result = expression.eval("x=10; y=13");
         Assertions.assertEquals(result, 23);
     }
 
     @Test
     void derivativeTwoVarsTest() {
         System.out.println("Дифференцирование дроби");
-        expression = new Div(new Add(new Variable("x"), new Number(2)),
-                             new Sub(new Variable("x"), new Number(3)));
+        expressionStr = "(x+2)/(x-3)";
+        expression = ExpressionParser.parse(expressionStr);
         Expression derivative = expression.derivative("x");
         derivative.print();
     }

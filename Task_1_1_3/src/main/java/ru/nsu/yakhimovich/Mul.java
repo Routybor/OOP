@@ -37,7 +37,7 @@ class Mul extends Expression {
      * @return результат означивания
      */
     @Override
-    public int eval(String variables) {
+    public double eval(String variables) {
         return left.eval(variables) * right.eval(variables);
     }
 
@@ -59,5 +59,40 @@ class Mul extends Expression {
     @Override
     public void print() {
         System.out.println(this);
+    }
+
+    /**
+     * Упрощение деления:
+     * 1) умножение двух чисел.
+     * 2) умножение на 1.
+     * 3) умножение на 0.
+     *
+     * @return упрощенное значение
+     */
+    @Override
+    public Expression simplify() {
+        Expression simpleLeft = left.simplify();
+        Expression simpleRight = right.simplify();
+
+        // Умножение констант
+        if (simpleLeft instanceof Number && simpleRight instanceof Number) {
+            return new Number(simpleLeft.eval("") * simpleRight.eval(""));
+        }
+
+        // Умножение на 0
+        if (simpleLeft instanceof Number && simpleLeft.eval("") == 0 ||
+                simpleRight instanceof Number && simpleRight.eval("") == 0) {
+            return new Number(0);
+        }
+
+        // Умножение на 1
+        if (simpleLeft instanceof Number && simpleLeft.eval("") == 1) {
+            return simpleRight;
+        }
+        if (simpleRight instanceof Number && simpleRight.eval("") == 1) {
+            return simpleLeft;
+        }
+
+        return new Mul(simpleLeft, simpleRight);
     }
 }

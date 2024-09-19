@@ -26,20 +26,20 @@ class Div extends Expression {
      */
     @Override
     public Expression derivative(String variable) {
-        Expression numerator = new Sub(new Mul(left.derivative(variable), right),
-                new Mul(left, right.derivative(variable)));
+        Expression numerator = new Sub(new Mul(left.derivative(variable), right), new Mul(left, right.derivative(variable)));
         Expression denominator = new Mul(right, right);
         return new Div(numerator, denominator);
     }
 
     /**
      * Означивание деления.
+     * Ошибка при делении на ноль.
      *
      * @param variables переменные и их значения.
      * @return результат означивания
      */
     @Override
-    public int eval(String variables) {
+    public double eval(String variables) {
         return left.eval(variables) / right.eval(variables);
     }
 
@@ -61,5 +61,40 @@ class Div extends Expression {
     @Override
     public void print() {
         System.out.println(this);
+    }
+
+    /**
+     * Упрощение деления:
+     * 1) деление двух чисел.
+     * 2) деление на 1.
+     * 3) деление 0.
+     *
+     * @return упрощенное значение
+     */
+    @Override
+    public Expression simplify() {
+        Expression simpleLeft = left.simplify();
+        Expression simpleRight = right.simplify();
+
+        // Деление констант
+        if (simpleLeft instanceof Number && simpleRight instanceof Number) {
+            return new Number(simpleLeft.eval("") / simpleRight.eval(""));
+        }
+
+        // Деление одинаковых выражений
+        if (simpleLeft.equals(simpleRight)) {
+            return new Number(1);
+        }
+
+        // Деление 0
+        if (simpleLeft instanceof Number && simpleLeft.eval("") == 0) {
+            return new Number(0); // Деление 0
+        }
+
+        // Деление на 1
+        if (simpleRight instanceof Number && simpleRight.eval("") == 1) {
+            return simpleLeft; // Деление на 1
+        }
+        return new Div(simpleLeft, simpleRight);
     }
 }
