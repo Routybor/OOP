@@ -1,7 +1,7 @@
 package ru.nsu.yakhimovich;
 
 /**
- * Класс реализующий логику выражений.
+ * Класс, реализующий логику выражений.
  */
 abstract class Expression {
     public abstract void print(); // Печать выражения

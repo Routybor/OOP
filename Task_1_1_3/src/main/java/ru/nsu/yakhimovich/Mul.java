@@ -1,7 +1,7 @@
 package ru.nsu.yakhimovich;
 
 /**
- * Класс реализующий произведение.
+ * Класс, реализующий произведение.
  */
 class Mul extends Expression {
     private final Expression left;

@@ -1,13 +1,14 @@
 package ru.nsu.yakhimovich;
 
 /**
- * Класс реализующий числа.
+ * Класс, реализующий числа.
  */
 class Number extends Expression {
     private final int value;
 
     /**
      * Конструктор создает число с указанным значением.
+     *
      * @param value значение числа
      */
     public Number(int value) {
@@ -16,6 +17,7 @@ class Number extends Expression {
 
     /**
      * Производная числа.
+     *
      * @param variable переменная относительно которой берется производная
      * @return производная
      */
@@ -26,6 +28,7 @@ class Number extends Expression {
 
     /**
      * Означивание числа.
+     *
      * @param variables переменная
      * @return значение числа
      */
@@ -36,6 +39,7 @@ class Number extends Expression {
 
     /**
      * Стоковое значение числа.
+     *
      * @return строковое значение числа.
      */
     @Override

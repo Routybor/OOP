@@ -1,23 +1,20 @@
 package ru.nsu.yakhimovich;
 
 /**
- * Класс проверяющий корректность сборки.
+ * Класс, проверяющий корректность сборки.
  */
 public class Main {
     /**
-     * Конструктор по умолчанию.
-     */
-    public Main() {
-        // Пустой конструктор для избежания warning
-    }
-
-    /**
-     * Проверка сборки.
+     * Проверка корректной сборки и работы программы.
      *
-     * @param args аргументы строки
+     * @param args аргументы командной строки
      */
     public static void main(String[] args) {
-        Expression expression = new Mul(new Number(2), new Number(2));
-        expression.print();
+        String expressionStr = "3 +( 2 * x + 2) * y";
+        Expression e = ExpressionParser.parse(expressionStr);
+
+        e.print(); // (3+(((2*x)+2)*y))
+        System.out.println();
     }
 }
+

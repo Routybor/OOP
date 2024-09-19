@@ -1,5 +1,19 @@
-javadoc -d doc src/main/java/ru/nsu/yakhimovich/Expression.java src/main/java/ru/nsu/yakhimovich/Number.java src/main/java/ru/nsu/yakhimovich/Variable.java src/main/java/ru/nsu/yakhimovich/Add.java src/main/java/ru/nsu/yakhimovich/Sub.java src/main/java/ru/nsu/yakhimovich/Mul.java src/main/java/ru/nsu/yakhimovich/Div.java src/main/java/ru/nsu/yakhimovich/Main.java
+SRC_DIR="src/main/java/ru/nsu/yakhimovich"
+BUILD_DIR="build"
+DOC_DIR="doc"
 
-javac -d build src/main/java/ru/nsu/yakhimovich/Expression.java src/main/java/ru/nsu/yakhimovich/Number.java src/main/java/ru/nsu/yakhimovich/Variable.java src/main/java/ru/nsu/yakhimovich/Add.java src/main/java/ru/nsu/yakhimovich/Sub.java src/main/java/ru/nsu/yakhimovich/Mul.java src/main/java/ru/nsu/yakhimovich/Div.java src/main/java/ru/nsu/yakhimovich/Main.java
+SOURCES="$SRC_DIR/Expression.java $SRC_DIR/ExpressionParser.java $SRC_DIR/Number.java $SRC_DIR/Variable.java \
+          $SRC_DIR/Add.java $SRC_DIR/Sub.java $SRC_DIR/Mul.java $SRC_DIR/Div.java \
+          $SRC_DIR/Main.java"
 
-java -cp build ru.nsu.yakhimovich.Main
+MAIN_CLASS="ru.nsu.yakhimovich.Main"
+
+rm -rf "$BUILD_DIR" "$DOC_DIR"
+
+mkdir -p "$BUILD_DIR" "$DOC_DIR"
+
+javadoc -d "$DOC_DIR" $SOURCES
+
+javac -d "$BUILD_DIR" $SOURCES
+
+java -cp "$BUILD_DIR" "$MAIN_CLASS"

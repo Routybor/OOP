@@ -1,7 +1,7 @@
 package ru.nsu.yakhimovich;
 
 /**
- * Класс реализующий вычитание.
+ * Класс, реализующий вычитание.
  */
 class Sub extends Expression {
     private final Expression left;

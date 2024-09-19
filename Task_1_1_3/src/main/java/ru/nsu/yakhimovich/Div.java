@@ -1,7 +1,7 @@
 package ru.nsu.yakhimovich;
 
 /**
- * Класс реализующий деление.
+ * Класс, реализующий деление.
  */
 class Div extends Expression {
     private final Expression left;
@@ -9,7 +9,8 @@ class Div extends Expression {
 
     /**
      * Конструктор создаёт деление из двух частей: left, right.
-     * @param left левая часть
+     *
+     * @param left  левая часть
      * @param right правая часть
      */
     public Div(Expression left, Expression right) {
@@ -19,19 +20,21 @@ class Div extends Expression {
 
     /**
      * Производная деления.
+     *
      * @param variable имя переменной по которой берется производная
      * @return производная
      */
     @Override
     public Expression derivative(String variable) {
         Expression numerator = new Sub(new Mul(left.derivative(variable), right),
-                                       new Mul(left, right.derivative(variable)));
+                new Mul(left, right.derivative(variable)));
         Expression denominator = new Mul(right, right);
         return new Div(numerator, denominator);
     }
 
     /**
      * Означивание деления.
+     *
      * @param variables переменные и их значения.
      * @return результат означивания
      */
@@ -42,6 +45,7 @@ class Div extends Expression {
 
     /**
      * Стоковое значение деления.
+     *
      * @return строка - деление
      */
     @Override
