@@ -15,14 +15,14 @@ public class ExpressionUnitTest {
     double result;
 
     @Test
-    void printTest1() {
+    void expressioPrint() {
         System.out.println("Печать выражения");
         expression.print();
         Assertions.assertEquals(expression.toString(), "(3+(2*x))");
     }
 
     @Test
-    void derivativeTest() {
+    void expressionDerivative() {
         System.out.println("Дифференцирование по переменной x");
         derivative = expression.derivative("x");
         derivative.print();
@@ -30,7 +30,7 @@ public class ExpressionUnitTest {
     }
 
     @Test
-    void printTest2() {
+    void printSimplified() {
         System.out.println("Упрощение выражения");
         //                    0      -    0    +   0   +    0    +       1
         expressionStr = "(x-0)*1-1*x - x*0-0*x + (3-3) + 3/3-1/1 + (x/1-0/x)/x";
@@ -41,14 +41,14 @@ public class ExpressionUnitTest {
     }
 
     @Test
-    void evalTest() {
+    void evaluation() {
         System.out.println("Вычисление выражения при x = 10 y = 13");
         result = expression.eval("x=10; y=13");
         Assertions.assertEquals(result, 23);
     }
 
     @Test
-    void derivativeTwoVarsTest() {
+    void derivativeTwoVars() {
         System.out.println("Дифференцирование дроби");
         expressionStr = "(x+2)/(x-3)";
         expression = ExpressionParser.parse(expressionStr);
@@ -59,7 +59,7 @@ public class ExpressionUnitTest {
     }
 
     @Test
-    void variableErrorTest() {
+    void variableError() {
         System.out.println("Ошибочное означивание");
         error = false;
         try {
@@ -73,7 +73,7 @@ public class ExpressionUnitTest {
     }
 
     @Test
-    void numberPrintTest() {
+    void numberPrint() {
         System.out.println("Печать числа");
         Number num = new Number(12);
         num.print();
@@ -81,7 +81,7 @@ public class ExpressionUnitTest {
     }
 
     @Test
-    void negativeNumberTest() {
+    void negativeNumber() {
         System.out.println("Ввод отрицательного числа");
         expressionStr = "2+(-2)";
         expression = ExpressionParser.parse(expressionStr);
@@ -253,5 +253,13 @@ public class ExpressionUnitTest {
         if (!error) {
             Assertions.fail("Ожидалось RuntimeException при '2+@2'");
         }
+    }
+
+    @Test
+    void doubleNumberTest() {
+        System.out.println("Вещественное число = 0.125");
+        Number number = new Number(0.125);
+        number.print();
+        Assertions.assertEquals(number.toString(), "0.125");
     }
 }
