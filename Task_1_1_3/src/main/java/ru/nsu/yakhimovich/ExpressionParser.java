@@ -38,7 +38,7 @@ class ExpressionParser {
             operation = input.charAt(ind++);
             if (ind >= input.length() || input.charAt(ind) == '+' || input.charAt(ind) == '-'
                     || input.charAt(ind) == '*' || input.charAt(ind) == '/') {
-                throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы");
+                throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы!");
             }
             right = parseTerm();
             if (operation == '+') {
@@ -66,7 +66,7 @@ class ExpressionParser {
             operation = input.charAt(ind++);
             if (ind >= input.length() || input.charAt(ind) == '+' || input.charAt(ind) == '-'
                     || input.charAt(ind) == '*' || input.charAt(ind) == '/') {
-                throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы");
+                throw new RuntimeException("Некорректный ввод= повторные/завершающие операторы!");
             }
             right = parseAtom();
             if (operation == '*') {
@@ -95,17 +95,17 @@ class ExpressionParser {
             ind++;
         }
         if (ind >= input.length()) {
-            throw new RuntimeException("Некорректный ввод = выражение не окончено");
+            throw new RuntimeException("Некорректный ввод = выражение не окончено!");
         }
         if (input.charAt(ind) == '(') { // Выражения в скобках
             ind++;
             result = parseExpression();
             if (ind >= input.length() || input.charAt(ind) != ')') {
-                throw new RuntimeException("Некорректный ввод = '(' не закрыта");
+                throw new RuntimeException("Некорректный ввод = '(' не закрыта!");
             }
             ind++;
         } else if (input.charAt(ind) == ')') {
-            throw new RuntimeException("Некорректный ввод = ')' не была открыта" + ind);
+            throw new RuntimeException("Некорректный ввод = ')' не была открыта!");
         } else if (Character.isDigit(input.charAt(ind)) || input.charAt(ind) == '.') {
             boolean hasDot = false;
             while (ind < input.length() && (Character.isDigit(input.charAt(ind))
@@ -123,7 +123,7 @@ class ExpressionParser {
                 sb.append(input.charAt(ind++));
             }
             if (sb.length() == 0) {
-                throw new RuntimeException("Некорректный ввод = отсутствует переменная/число");
+                throw new RuntimeException("Некорректный ввод = отсутствует переменная/число!");
             }
             result = new Variable(sb.toString());
         }

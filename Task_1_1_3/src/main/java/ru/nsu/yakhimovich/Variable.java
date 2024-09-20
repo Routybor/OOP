@@ -45,7 +45,7 @@ class Variable extends Expression {
                 return Integer.parseInt(parts[1].trim());
             }
         }
-        throw new RuntimeException("Variable " + name + " not defined.");
+        throw new RuntimeException("Переменная " + name + " не определена!");
     }
 
     /**
