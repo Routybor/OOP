@@ -46,11 +46,14 @@ class Number extends Expression {
     @Override
     public String toString() {
         String result;
+
         if ((int) value == value) {
             result = String.valueOf((int) value);
         } else {
             result = String.valueOf(value);
         }
+        result = value < 0 ? "(" + result + ")" : result;
+
         return result;
     }
 

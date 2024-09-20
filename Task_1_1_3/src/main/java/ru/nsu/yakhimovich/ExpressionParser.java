@@ -16,7 +16,11 @@ class ExpressionParser {
     public static Expression parse(String str) {
         input = str.replaceAll(" ", ""); // Очистка пробелов
         ind = 0;
-        return parseExpression();
+        Expression result = parseExpression();
+        if (ind < input.length()) {
+            throw new RuntimeException("Некорректный ввод= ошибочный символ" + input.charAt(ind));
+        }
+        return result;
     }
 
     /**
@@ -32,6 +36,10 @@ class ExpressionParser {
 
         while (ind < input.length() && (input.charAt(ind) == '+' || input.charAt(ind) == '-')) {
             operation = input.charAt(ind++);
+            if (ind >= input.length() || input.charAt(ind) == '+' || input.charAt(ind) == '-'
+                    || input.charAt(ind) == '*' || input.charAt(ind) == '/') {
+                throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы");
+            }
             right = parseTerm();
             if (operation == '+') {
                 result = new Add(result, right);
@@ -56,6 +64,10 @@ class ExpressionParser {
 
         while (ind < input.length() && (input.charAt(ind) == '*' || input.charAt(ind) == '/')) {
             operation = input.charAt(ind++);
+            if (ind >= input.length() || input.charAt(ind) == '+' || input.charAt(ind) == '-'
+                    || input.charAt(ind) == '*' || input.charAt(ind) == '/') {
+                throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы");
+            }
             right = parseAtom();
             if (operation == '*') {
                 result = new Mul(result, right);
@@ -75,23 +87,43 @@ class ExpressionParser {
     private static Expression parseAtom() {
         Expression result;
         StringBuilder sb = new StringBuilder();
+        boolean isNegative = false;
+        double scanned;
 
+        if (input.charAt(ind) == '-') {
+            isNegative = true;
+            ind++;
+        }
+        if (ind >= input.length()) {
+            throw new RuntimeException("Некорректный ввод = выражение не окончено");
+        }
         if (input.charAt(ind) == '(') { // Выражения в скобках
             ind++;
             result = parseExpression();
-            ind++; // Отбрасывание ')'
-        } else if (Character.isDigit(input.charAt(ind)) || input.charAt(ind) == '.') { // Числа с учетом десятичных точек
+            if (ind >= input.length() || input.charAt(ind) != ')') {
+                throw new RuntimeException("Некорректный ввод = '(' не закрыта");
+            }
+            ind++;
+        } else if (input.charAt(ind) == ')') {
+            throw new RuntimeException("Некорректный ввод = ')' не была открыта" + ind);
+        } else if (Character.isDigit(input.charAt(ind)) || input.charAt(ind) == '.') {
             boolean hasDot = false;
-            while (ind < input.length() && (Character.isDigit(input.charAt(ind)) || (!hasDot && input.charAt(ind) == '.'))) {
+            while (ind < input.length() && (Character.isDigit(input.charAt(ind))
+                    || (!hasDot && input.charAt(ind) == '.'))) {
                 if (input.charAt(ind) == '.') {
                     hasDot = true;
                 }
                 sb.append(input.charAt(ind++));
             }
-            result = new Number(Double.parseDouble(sb.toString()));
+            scanned = Double.parseDouble(sb.toString());
+            scanned = isNegative ? scanned * -1 : scanned;
+            result = new Number(scanned);
         } else { // Переменные
             while (ind < input.length() && Character.isLetter(input.charAt(ind))) {
                 sb.append(input.charAt(ind++));
+            }
+            if (sb.isEmpty()) {
+                throw new RuntimeException("Некорректный ввод = отсутствует переменная/число");
             }
             result = new Variable(sb.toString());
         }
