@@ -26,7 +26,8 @@ class Div extends Expression {
      */
     @Override
     public Expression derivative(String variable) {
-        Expression numerator = new Sub(new Mul(left.derivative(variable), right), new Mul(left, right.derivative(variable)));
+        Expression numerator = new Sub(new Mul(left.derivative(variable), right),
+                               new Mul(left, right.derivative(variable)));
         Expression denominator = new Mul(right, right);
         return new Div(numerator, denominator);
     }

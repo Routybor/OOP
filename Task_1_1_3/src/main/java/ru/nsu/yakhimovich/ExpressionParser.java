@@ -122,7 +122,7 @@ class ExpressionParser {
             while (ind < input.length() && Character.isLetter(input.charAt(ind))) {
                 sb.append(input.charAt(ind++));
             }
-            if (sb.isEmpty()) {
+            if (sb.length() == 0) {
                 throw new RuntimeException("Некорректный ввод = отсутствует переменная/число");
             }
             result = new Variable(sb.toString());

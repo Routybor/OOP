@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 public class ExpressionUnitTest {
     String expressionStr = "3+2*x";
     Expression expression = ExpressionParser.parse(expressionStr);
-    Expression simple, derivative;
+    Expression simple;
+    Expression derivative;
     boolean error;
     double result;
 

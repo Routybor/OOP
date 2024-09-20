@@ -80,8 +80,8 @@ class Mul extends Expression {
         }
 
         // Умножение на 0
-        if (simpleLeft instanceof Number && simpleLeft.eval("") == 0 ||
-                simpleRight instanceof Number && simpleRight.eval("") == 0) {
+        if (simpleLeft instanceof Number && simpleLeft.eval("") == 0
+         || simpleRight instanceof Number && simpleRight.eval("") == 0) {
             return new Number(0);
         }
 
