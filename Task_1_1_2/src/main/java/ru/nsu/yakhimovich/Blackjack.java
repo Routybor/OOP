@@ -75,11 +75,27 @@ public class Blackjack {
     /**
      * Инициализирует руки игрока и дилера, раздавая по две карты.
      */
-    private void initHands() {
+    public void initHands() {
         playerHand.addCard(deck.pickCard());
         playerHand.addCard(deck.pickCard());
         dealerHand.addCard(deck.pickCard());
         dealerHand.addCard(deck.pickCard());
+    }
+
+    /**
+     * Возвращает руку игрока для отладки.
+     * @return рука игрока
+     */
+    public Hand getPlayerHand() {
+        return playerHand;
+    }
+
+    /**
+     * Возвращает руку дилера для отладки.
+     * @return рука дилера
+     */
+    public Hand getDealerHand() {
+        return dealerHand;
     }
 
     /**
@@ -88,11 +104,10 @@ public class Blackjack {
      *
      * @return результат хода игрока: -1 — проигрыш, 1 — выигрыш, 0 — продолжение игры
      */
-    private int playerTurn() {
+    public int playerTurn() {
         int playerResult = 0;
         String decision;
         Scanner scan = new Scanner(System.in);
-
         for (int i = 0; i < 8; i++) { // 1*4 + 2*4 + 3*3 = 21 - (10 карт = макс)
             System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться.");
             decision = scan.nextLine();
@@ -123,7 +138,7 @@ public class Blackjack {
      * Если дилер превышает 21 очко, игрок выигрывает.
      * В противном случае сравниваются очки игрока и дилера.
      */
-    private int dealerTurn() {
+    public int dealerTurn() {
         int dealerResult = 0;
 
         System.out.printf("Ход дилера%n-------%n");
@@ -160,7 +175,7 @@ public class Blackjack {
      *
      * @param sec количество секунд для паузы
      */
-    private void pause(int sec) {
+    public void pause(int sec) {
         try {
             Thread.sleep(sec * 1000L);
         } catch (InterruptedException e) {
