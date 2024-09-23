@@ -84,6 +84,7 @@ public class Blackjack {
 
     /**
      * Возвращает руку игрока для отладки.
+     *
      * @return рука игрока
      */
     public Hand getPlayerHand() {
@@ -92,6 +93,7 @@ public class Blackjack {
 
     /**
      * Возвращает руку дилера для отладки.
+     *
      * @return рука дилера
      */
     public Hand getDealerHand() {
