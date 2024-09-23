@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -178,13 +178,55 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dealerTurn()">dealerTurn</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Ход дилера.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="Hand.html" title="class in ru.nsu.yakhimovich">Hand</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDealerHand()">getDealerHand</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Возвращает руку дилера для отладки.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="Hand.html" title="class in ru.nsu.yakhimovich">Hand</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlayerHand()">getPlayerHand</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Возвращает руку игрока для отладки.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initHands()">initHands</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Инициализирует руки игрока и дилера, раздавая по две карты.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#main(java.lang.String%5B%5D)">main</a></span>&#8203;(java.lang.String[]&nbsp;args)</code></th>
 <td class="colLast">
 <div class="block">Точка входа в программу.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pause(int)">pause</a></span>&#8203;(int&nbsp;sec)</code></th>
+<td class="colLast">
+<div class="block">Пауза на указанное количество секунд.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#playerTurn()">playerTurn</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Ход игрока.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#startRound(int,int%5B%5D)">startRound</a></span>&#8203;(int&nbsp;round,
           int[]&nbsp;score)</code></th>
@@ -251,6 +293,85 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>round</code> - номер текущего раунда</dd>
 <dd><code>score</code> - счет игры, первый элемент - игрок, второй - дилер</dd>
+</dl>
+</li>
+</ul>
+<a id="initHands()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>initHands</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;initHands()</pre>
+<div class="block">Инициализирует руки игрока и дилера, раздавая по две карты.</div>
+</li>
+</ul>
+<a id="getPlayerHand()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPlayerHand</h4>
+<pre class="methodSignature">public&nbsp;<a href="Hand.html" title="class in ru.nsu.yakhimovich">Hand</a>&nbsp;getPlayerHand()</pre>
+<div class="block">Возвращает руку игрока для отладки.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>рука игрока</dd>
+</dl>
+</li>
+</ul>
+<a id="getDealerHand()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDealerHand</h4>
+<pre class="methodSignature">public&nbsp;<a href="Hand.html" title="class in ru.nsu.yakhimovich">Hand</a>&nbsp;getDealerHand()</pre>
+<div class="block">Возвращает руку дилера для отладки.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>рука дилера</dd>
+</dl>
+</li>
+</ul>
+<a id="playerTurn()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>playerTurn</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;playerTurn()</pre>
+<div class="block">Ход игрока.
+ Игрок либо взять еще одну карту, либо остановиться.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>результат хода игрока: -1 — проигрыш, 1 — выигрыш, 0 — продолжение игры</dd>
+</dl>
+</li>
+</ul>
+<a id="dealerTurn()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>dealerTurn</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;dealerTurn()</pre>
+<div class="block">Ход дилера.
+ Если дилер превышает 21 очко, игрок выигрывает.
+ В противном случае сравниваются очки игрока и дилера.</div>
+</li>
+</ul>
+<a id="pause(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pause</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;pause&#8203;(int&nbsp;sec)</pre>
+<div class="block">Пауза на указанное количество секунд.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sec</code> - количество секунд для паузы</dd>
 </dl>
 </li>
 </ul>
