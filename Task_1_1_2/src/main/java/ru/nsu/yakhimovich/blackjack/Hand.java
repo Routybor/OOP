@@ -1,4 +1,4 @@
-package ru.nsu.yakhimovich;
+package ru.nsu.yakhimovich.blackjack;
 
 /**
  * Класс для хранения и управления картами в руке игрока и дилера.

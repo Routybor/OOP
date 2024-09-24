@@ -1,4 +1,4 @@
-package ru.nsu.yakhimovich;
+package ru.nsu.yakhimovich.blackjack;
 
 import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.Assertions;

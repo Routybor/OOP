@@ -1,4 +1,4 @@
-package ru.nsu.yakhimovich;
+package ru.nsu.yakhimovich.blackjack;
 
 /**
  * Класс, представляющий карту в игре.
