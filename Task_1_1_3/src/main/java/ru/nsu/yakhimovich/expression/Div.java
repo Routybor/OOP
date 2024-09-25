@@ -1,11 +1,11 @@
-package ru.nsu.yakhimovich;
+package ru.nsu.yakhimovich.expression;
 
 /**
  * Класс, реализующий деление.
  */
-class Div extends Expression {
-    private final Expression left;
-    private final Expression right;
+class Div extends ru.nsu.yakhimovich.expression.Expression {
+    private final ru.nsu.yakhimovich.expression.Expression left;
+    private final ru.nsu.yakhimovich.expression.Expression right;
 
     /**
      * Конструктор создаёт деление из двух частей: left, right.
@@ -25,7 +25,7 @@ class Div extends Expression {
      * @return производная
      */
     @Override
-    public Expression derivative(String variable) {
+    public ru.nsu.yakhimovich.expression.Expression derivative(String variable) {
         Expression numerator = new Sub(new Mul(left.derivative(variable), right),
                                new Mul(left, right.derivative(variable)));
         Expression denominator = new Mul(right, right);
@@ -73,9 +73,9 @@ class Div extends Expression {
      * @return упрощенное значение
      */
     @Override
-    public Expression simplify() {
-        Expression simpleLeft = left.simplify();
-        Expression simpleRight = right.simplify();
+    public ru.nsu.yakhimovich.expression.Expression simplify() {
+        ru.nsu.yakhimovich.expression.Expression simpleLeft = left.simplify();
+        ru.nsu.yakhimovich.expression.Expression simpleRight = right.simplify();
 
         // Деление констант
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
