@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"ru.nsu.yakhimovich","c":"Main","l":"Main()","url":"%3Cinit%3E()"},{"p":"ru.nsu.yakhimovich","c":"Main","l":"main(String[])","url":"main(java.lang.String[])"}]
+memberSearchIndex = [{"p":"ru.nsu.yakhimovich.expression","c":"Main","l":"Main()","url":"%3Cinit%3E()"},{"p":"ru.nsu.yakhimovich.expression","c":"Main","l":"main(String[])","url":"main(java.lang.String[])"}]
