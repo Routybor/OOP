@@ -59,14 +59,6 @@ class Variable extends ru.nsu.yakhimovich.expression.Expression {
     }
 
     /**
-     * Вывод имени переменной в консоль.
-     */
-    @Override
-    public void print() {
-        System.out.println(name);
-    }
-
-    /**
      * Упрощение переменной, на деле - возвращение самой переменной.
      *
      * @return переменная

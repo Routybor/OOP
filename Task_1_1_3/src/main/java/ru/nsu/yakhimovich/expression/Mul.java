@@ -54,14 +54,6 @@ class Mul extends Expression {
     }
 
     /**
-     * Вывод произведения в консоль.
-     */
-    @Override
-    public void print() {
-        System.out.println(this);
-    }
-
-    /**
      * Упрощение деления:
      * 1) умножение двух чисел.
      * 2) умножение на 1.

@@ -57,14 +57,6 @@ class Div extends ru.nsu.yakhimovich.expression.Expression {
     }
 
     /**
-     * Вывод деления в консоль.
-     */
-    @Override
-    public void print() {
-        System.out.println(this);
-    }
-
-    /**
      * Упрощение деления:
      * 1) деление двух чисел.
      * 2) деление на 1.

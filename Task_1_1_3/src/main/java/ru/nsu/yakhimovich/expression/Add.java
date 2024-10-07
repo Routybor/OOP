@@ -53,14 +53,6 @@ class Add extends Expression {
     }
 
     /**
-     * Вывод суммы в консоль.
-     */
-    @Override
-    public void print() {
-        System.out.println(this);
-    }
-
-    /**
      * Упрощение суммы:
      * 1) сумма двух чисел.
      * 2) одно из слагаемых = 0.

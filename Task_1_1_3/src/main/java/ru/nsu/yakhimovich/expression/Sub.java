@@ -53,14 +53,6 @@ class Sub extends Expression {
     }
 
     /**
-     * Вывод разности в консоль.
-     */
-    @Override
-    public void print() {
-        System.out.println(this);
-    }
-
-    /**
      * Упрощение разности:
      * 1) разность двух чисел.
      * 2) вычитаемое = 0.
