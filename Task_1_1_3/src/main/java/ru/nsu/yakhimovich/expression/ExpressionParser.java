@@ -24,6 +24,16 @@ class ExpressionParser {
     }
 
     /**
+     * Проверка символа на его принадлежность списку валидных операторов.
+     *
+     * @param ch символ
+     * @return True/False является ли валидным оператором
+     */
+    private static boolean isOperator(char ch) {
+        return "+-*/".indexOf(ch) != -1;
+    }
+
+    /**
      * Парсинг выражения, обработка сложения и вычитания.
      * Рекурсивный вызов parseTerm для обработки более приоритетных операций.
      *
@@ -32,20 +42,18 @@ class ExpressionParser {
     private static Expression parseExpression() {
         Expression result = parseTerm(); // Обработка сначала умножения/деления
         Expression right;
-        char operation;
 
-        while (ind < input.length() && (input.charAt(ind) == '+' || input.charAt(ind) == '-')) {
-            operation = input.charAt(ind++);
-            if (ind >= input.length() || input.charAt(ind) == '+' || input.charAt(ind) == '-'
-                    || input.charAt(ind) == '*' || input.charAt(ind) == '/') {
+        while (ind < input.length() && isOperator(input.charAt(ind))) {
+            final var currentChar = input.charAt(ind++);
+            if (ind >= input.length() || isOperator(input.charAt(ind))) {
                 throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы!");
             }
             right = parseTerm();
-            if (operation == '+') {
-                result = new Add(result, right);
-            } else {
-                result = new Sub(result, right);
-            }
+            result = switch (currentChar) {
+                case '+' -> new Add(result, right);
+                case '-' -> new Sub(result, right);
+                default -> result;
+            };
         }
 
         return result;
@@ -60,20 +68,18 @@ class ExpressionParser {
     private static Expression parseTerm() {
         Expression result = parseAtom(); // Обработка сначала чисел/переменных
         Expression right;
-        char operation;
 
-        while (ind < input.length() && (input.charAt(ind) == '*' || input.charAt(ind) == '/')) {
-            operation = input.charAt(ind++);
-            if (ind >= input.length() || input.charAt(ind) == '+' || input.charAt(ind) == '-'
-                    || input.charAt(ind) == '*' || input.charAt(ind) == '/') {
-                throw new RuntimeException("Некорректный ввод= повторные/завершающие операторы!");
+        while (ind < input.length() && ("*/".indexOf(input.charAt(ind)) != -1)) {
+            final var currentChar = input.charAt(ind++);
+            if (ind >= input.length() || isOperator(input.charAt(ind))) {
+                throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы!");
             }
             right = parseAtom();
-            if (operation == '*') {
-                result = new Mul(result, right);
-            } else {
-                result = new Div(result, right);
-            }
+            result = switch (currentChar) {
+                case '*' -> new Mul(result, right);
+                case '/' -> new Div(result, right);
+                default -> result;
+            };
         }
 
         return result;
