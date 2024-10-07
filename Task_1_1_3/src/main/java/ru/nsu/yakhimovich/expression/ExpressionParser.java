@@ -49,11 +49,16 @@ class ExpressionParser {
                 throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы!");
             }
             right = parseTerm();
-            result = switch (currentChar) {
-                case '+' -> new Add(result, right);
-                case '-' -> new Sub(result, right);
-                default -> result;
-            };
+            switch (currentChar) {
+                case '+':
+                    result = new Add(result, right);
+                    break;
+                case '-':
+                    result = new Sub(result, right);
+                    break;
+                default:
+                    break;
+            }
         }
 
         return result;
@@ -75,11 +80,16 @@ class ExpressionParser {
                 throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы!");
             }
             right = parseAtom();
-            result = switch (currentChar) {
-                case '*' -> new Mul(result, right);
-                case '/' -> new Div(result, right);
-                default -> result;
-            };
+            switch (currentChar) {
+                case '*':
+                    result = new Mul(result, right);
+                    break;
+                case '/':
+                    result = new Div(result, right);
+                    break;
+                default:
+                    break;
+            }
         }
 
         return result;
