@@ -72,7 +72,7 @@ class Div extends ru.nsu.yakhimovich.expression.Expression {
         // Деление констант
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
             if (simpleRight.eval("") == 0) {
-                throw new RuntimeException("Деление на ноль!");
+                throw new ArithmeticException("Деление на ноль!");
             }
             return new Number(simpleLeft.eval("") / simpleRight.eval(""));
         }

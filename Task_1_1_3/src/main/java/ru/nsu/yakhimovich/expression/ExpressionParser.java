@@ -4,8 +4,8 @@ package ru.nsu.yakhimovich.expression;
  * Класс, реализующий парсинг строк в объекты Expression.
  */
 class ExpressionParser {
-    private static int ind = 0;
-    private static String input;
+    private int ind = 0;
+    private String input;
 
     /**
      * Основная функция, очищающая входную строку от пробелов и начинающая процесс парсинга.
@@ -13,12 +13,15 @@ class ExpressionParser {
      * @param str строка, которую нужно обработать в объект Expression
      * @return объект Expression, представляющий данное выражение
      */
-    public static Expression parse(String str) {
+    public Expression parse(String str) {
+        if (str.length() == 0) {
+            throw new IllegalStateException("Некорректный ввод= пустая строка");
+        }
         input = str.replaceAll(" ", ""); // Очистка пробелов
         ind = 0;
         Expression result = parseExpression();
         if (ind < input.length()) {
-            throw new RuntimeException("Некорректный ввод= ошибочный символ" + input.charAt(ind));
+            throw new IllegalStateException("Некорректный ввод= ошибочный символ" + input.charAt(ind));
         }
         return result;
     }
@@ -29,7 +32,7 @@ class ExpressionParser {
      * @param ch символ
      * @return True/False является ли валидным оператором
      */
-    private static boolean isOperator(char ch) {
+    private boolean isOperator(char ch) {
         return "+-*/".indexOf(ch) != -1;
     }
 
@@ -39,14 +42,14 @@ class ExpressionParser {
      *
      * @return объект Expression, представляющий результат парсинга
      */
-    private static Expression parseExpression() {
+    private Expression parseExpression() {
         Expression result = parseTerm(); // Обработка сначала умножения/деления
         Expression right;
 
         while (ind < input.length() && isOperator(input.charAt(ind))) {
             final var currentChar = input.charAt(ind++);
             if (ind >= input.length() || isOperator(input.charAt(ind))) {
-                throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы!");
+                throw new IllegalStateException("Некорректный ввод = повторные/завершающие операторы!");
             }
             right = parseTerm();
             switch (currentChar) {
@@ -70,14 +73,14 @@ class ExpressionParser {
      *
      * @return объект Expression, представляющий результат парсинга терма
      */
-    private static Expression parseTerm() {
+    private Expression parseTerm() {
         Expression result = parseAtom(); // Обработка сначала чисел/переменных
         Expression right;
 
         while (ind < input.length() && ("*/".indexOf(input.charAt(ind)) != -1)) {
             final var currentChar = input.charAt(ind++);
             if (ind >= input.length() || isOperator(input.charAt(ind))) {
-                throw new RuntimeException("Некорректный ввод = повторные/завершающие операторы!");
+                throw new IllegalStateException("Некорректный ввод = повторные/завершающие операторы!");
             }
             right = parseAtom();
             switch (currentChar) {
@@ -100,7 +103,7 @@ class ExpressionParser {
      *
      * @return объект Expression, представляющий атомарное выражение
      */
-    private static Expression parseAtom() {
+    private Expression parseAtom() {
         Expression result;
         StringBuilder sb = new StringBuilder();
         boolean isNegative = false;
@@ -111,17 +114,17 @@ class ExpressionParser {
             ind++;
         }
         if (ind >= input.length()) {
-            throw new RuntimeException("Некорректный ввод = выражение не окончено!");
+            throw new IllegalStateException("Некорректный ввод = выражение не окончено!");
         }
         if (input.charAt(ind) == '(') { // Выражения в скобках
             ind++;
             result = parseExpression();
             if (ind >= input.length() || input.charAt(ind) != ')') {
-                throw new RuntimeException("Некорректный ввод = '(' не закрыта!");
+                throw new IllegalStateException("Некорректный ввод = '(' не закрыта!");
             }
             ind++;
         } else if (input.charAt(ind) == ')') {
-            throw new RuntimeException("Некорректный ввод = ')' не была открыта!");
+            throw new IllegalStateException("Некорректный ввод = ')' не была открыта!");
         } else if (Character.isDigit(input.charAt(ind)) || input.charAt(ind) == '.') {
             boolean hasDot = false;
             while (ind < input.length() && (Character.isDigit(input.charAt(ind))
@@ -139,7 +142,7 @@ class ExpressionParser {
                 sb.append(input.charAt(ind++));
             }
             if (sb.length() == 0) {
-                throw new RuntimeException("Некорректный ввод = отсутствует переменная/число!");
+                throw new IllegalStateException("Некорректный ввод = отсутствует переменная/число!");
             }
             result = new Variable(sb.toString());
         }

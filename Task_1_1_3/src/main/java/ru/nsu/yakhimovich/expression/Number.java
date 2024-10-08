@@ -58,19 +58,6 @@ class Number extends Expression {
     }
 
     /**
-     * Вывод числа в консоль.
-     * Если целое - вывод только целой части.
-     */
-    @Override
-    public void print() {
-        if ((int) value == value) {
-            System.out.printf("%d%n", (int) value);
-        } else {
-            System.out.printf("%f%n", value);
-        }
-    }
-
-    /**
      * Упрощение числа, на деле - возвращение самого числа.
      *
      * @return число

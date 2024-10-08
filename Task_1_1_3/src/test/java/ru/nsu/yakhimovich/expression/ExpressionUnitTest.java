@@ -1,4 +1,4 @@
-package ru.nsu.yakhimovich.expression;
+ package ru.nsu.yakhimovich.expression;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
  */
 public class ExpressionUnitTest {
     String expressionStr = "3+2*x";
-    Expression expression = ExpressionParser.parse(expressionStr);
+    ExpressionParser parser = new ExpressionParser();
+    Expression expression = parser.parse(expressionStr);
     Expression simple;
     Expression derivative;
     boolean error;
@@ -34,7 +35,7 @@ public class ExpressionUnitTest {
         System.out.println("Упрощение выражения");
         //                    0      -    0    +   0   +    0    +       1
         expressionStr = "(x-0)*1-1*x - x*0-0*x + (3-3) + 3/3-1/1 + (x/1-0/x)/x";
-        expression = ExpressionParser.parse(expressionStr);
+        expression = parser.parse(expressionStr);
         simple = expression.simplify();
         simple.print();
         Assertions.assertEquals(simple.toString(), "1");
@@ -51,7 +52,7 @@ public class ExpressionUnitTest {
     void derivativeTwoVars() {
         System.out.println("Дифференцирование дроби");
         expressionStr = "(x+2)/(x-3)";
-        expression = ExpressionParser.parse(expressionStr);
+        expression = parser.parse(expressionStr);
         derivative = expression.derivative("x");
         simple = derivative.simplify();
         simple.print();
@@ -84,7 +85,7 @@ public class ExpressionUnitTest {
     void negativeNumber() {
         System.out.println("Ввод отрицательного числа");
         expressionStr = "2+(-2)";
-        expression = ExpressionParser.parse(expressionStr);
+        expression = parser.parse(expressionStr);
         simple = expression.simplify();
         result = simple.eval("");
         Assertions.assertEquals(result, 0);
@@ -96,12 +97,12 @@ public class ExpressionUnitTest {
         expressionStr = "2++2";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '2++2'");
+            Assertions.fail("Ожидалось IllegalStateException при '2++2'");
         }
     }
 
@@ -111,12 +112,12 @@ public class ExpressionUnitTest {
         expressionStr = "2--2";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '2--2'");
+            Assertions.fail("Ожидалось IllegalStateException при '2--2'");
         }
     }
 
@@ -126,12 +127,12 @@ public class ExpressionUnitTest {
         expressionStr = "22+";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '22+'");
+            Assertions.fail("Ожидалось IllegalStateException при '22+'");
         }
     }
 
@@ -141,12 +142,12 @@ public class ExpressionUnitTest {
         expressionStr = "+2";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '+2'");
+            Assertions.fail("Ожидалось IllegalStateException при '+2'");
         }
     }
 
@@ -156,12 +157,12 @@ public class ExpressionUnitTest {
         expressionStr = "(2+2";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '(2+2'");
+            Assertions.fail("Ожидалось IllegalStateException при '(2+2'");
         }
     }
 
@@ -171,12 +172,12 @@ public class ExpressionUnitTest {
         expressionStr = "2+2)";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '2+2)'");
+            Assertions.fail("Ожидалось IllegalStateException при '2+2)'");
         }
     }
 
@@ -186,12 +187,12 @@ public class ExpressionUnitTest {
         expressionStr = "(2+*3)";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '(2+*3)'");
+            Assertions.fail("Ожидалось IllegalStateException при '(2+*3)'");
         }
     }
 
@@ -201,12 +202,12 @@ public class ExpressionUnitTest {
         expressionStr = "(2+3*)";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '(2+3*)'");
+            Assertions.fail("Ожидалось IllegalStateException при '(2+3*)'");
         }
     }
 
@@ -216,12 +217,12 @@ public class ExpressionUnitTest {
         expressionStr = "()";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '()'");
+            Assertions.fail("Ожидалось IllegalStateException при '()'");
         }
     }
 
@@ -231,12 +232,12 @@ public class ExpressionUnitTest {
         expressionStr = "";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при empty string");
+            Assertions.fail("Ожидалось IllegalStateException при empty string");
         }
     }
 
@@ -246,12 +247,12 @@ public class ExpressionUnitTest {
         expressionStr = "2+@2";
         error = false;
         try {
-            expression = ExpressionParser.parse(expressionStr);
-        } catch (RuntimeException e) {
+            expression = parser.parse(expressionStr);
+        } catch (IllegalStateException e) {
             error = true;
         }
         if (!error) {
-            Assertions.fail("Ожидалось RuntimeException при '2+@2'");
+            Assertions.fail("Ожидалось IllegalStateException при '2+@2'");
         }
     }
 
