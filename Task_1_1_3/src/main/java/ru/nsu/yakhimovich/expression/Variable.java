@@ -86,4 +86,13 @@ class Variable extends ru.nsu.yakhimovich.expression.Expression {
         Variable variable = (Variable) obj;
         return name.equals(variable.name); // Сравнивание переменных по именам
     }
+
+    /**
+     * Хэш код переменной, берется от имени, ведь у переменных уникальны имена.
+     * @return хэш-код
+     */
+    @Override
+    public int hashCode() {
+        return name.hashCode(); // Хэш-код основывается на значении поля name
+    }
 }
