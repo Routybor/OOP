@@ -21,7 +21,7 @@ class ExpressionParser {
         ind = 0;
         Expression result = parseExpression();
         if (ind < input.length()) {
-            throw new IllegalStateException("Некорректный ввод= ошибочный символ" + input.charAt(ind));
+            throw new IllegalStateException("Некорректный ввод=ошибочный символ");
         }
         return result;
     }
@@ -49,7 +49,7 @@ class ExpressionParser {
         while (ind < input.length() && isOperator(input.charAt(ind))) {
             final var currentChar = input.charAt(ind++);
             if (ind >= input.length() || isOperator(input.charAt(ind))) {
-                throw new IllegalStateException("Некорректный ввод = повторные/завершающие операторы!");
+                throw new IllegalStateException("Некорректный ввод=повтор/завершение оператором!");
             }
             right = parseTerm();
             switch (currentChar) {
@@ -80,7 +80,7 @@ class ExpressionParser {
         while (ind < input.length() && ("*/".indexOf(input.charAt(ind)) != -1)) {
             final var currentChar = input.charAt(ind++);
             if (ind >= input.length() || isOperator(input.charAt(ind))) {
-                throw new IllegalStateException("Некорректный ввод = повторные/завершающие операторы!");
+                throw new IllegalStateException("Некорректный ввод=повтор/завершение оператором!");
             }
             right = parseAtom();
             switch (currentChar) {
@@ -142,7 +142,7 @@ class ExpressionParser {
                 sb.append(input.charAt(ind++));
             }
             if (sb.length() == 0) {
-                throw new IllegalStateException("Некорректный ввод = отсутствует переменная/число!");
+                throw new IllegalStateException("Некорректный ввод=отсутствует переменная/число!");
             }
             result = new Variable(sb.toString());
         }

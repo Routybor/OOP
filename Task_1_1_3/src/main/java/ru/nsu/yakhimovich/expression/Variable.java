@@ -89,6 +89,7 @@ class Variable extends Expression {
 
     /**
      * Хэш код переменной, берется от имени, ведь у переменных уникальны имена.
+     *
      * @return хэш-код
      */
     @Override

@@ -1,5 +1,4 @@
- package ru.nsu.yakhimovich.expression;
-
+package ru.nsu.yakhimovich.expression;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
