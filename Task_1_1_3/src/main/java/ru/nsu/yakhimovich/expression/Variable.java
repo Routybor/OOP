@@ -3,7 +3,7 @@ package ru.nsu.yakhimovich.expression;
 /**
  * Класс реализующий переменные.
  */
-class Variable extends ru.nsu.yakhimovich.expression.Expression {
+class Variable extends Expression {
     private final String name;
 
     /**
@@ -22,7 +22,7 @@ class Variable extends ru.nsu.yakhimovich.expression.Expression {
      * @return производная переменной 0/1
      */
     @Override
-    public ru.nsu.yakhimovich.expression.Expression derivative(String variable) {
+    public Expression derivative(String variable) {
         if (name.equals(variable)) {
             return new Number(1); // Производная переменной по себе = 1
         } else {
@@ -64,7 +64,7 @@ class Variable extends ru.nsu.yakhimovich.expression.Expression {
      * @return переменная
      */
     @Override
-    public ru.nsu.yakhimovich.expression.Expression simplify() {
+    public Expression simplify() {
         return this; // Переменная не упрощается
     }
 

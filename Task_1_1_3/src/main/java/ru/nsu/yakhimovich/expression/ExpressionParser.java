@@ -14,7 +14,7 @@ class ExpressionParser {
      * @return объект Expression, представляющий данное выражение
      */
     public Expression parse(String str) {
-        if (str.length() == 0) {
+        if (str.isEmpty()) {
             throw new IllegalStateException("Некорректный ввод= пустая строка");
         }
         input = str.replaceAll(" ", ""); // Очистка пробелов
@@ -141,7 +141,7 @@ class ExpressionParser {
             while (ind < input.length() && Character.isLetter(input.charAt(ind))) {
                 sb.append(input.charAt(ind++));
             }
-            if (sb.length() == 0) {
+            if (sb.isEmpty()) {
                 throw new IllegalStateException("Некорректный ввод = отсутствует переменная/число!");
             }
             result = new Variable(sb.toString());
