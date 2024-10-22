@@ -3,7 +3,7 @@ package ru.nsu.yakhimovich.graph;
 import org.junit.jupiter.api.BeforeEach;
 
 /**
- *
+ * Использование абстрактных тестов для реализации через матрицу инцидентности.
  */
 public class IncidenceMatrixGraphTest extends AbstractGraphTest {
     @BeforeEach

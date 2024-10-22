@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Реализация графа
+ * Реализация графа.
  */
 public interface Graph {
 
@@ -20,6 +20,11 @@ public interface Graph {
 
     void readFromFile(String fileName) throws IOException;
 
+    /**
+     * Топологическая сортировка графа.
+     *
+     * @return массив вершин
+     */
     default List<String> topologicalSort() {
         List<String> sortedList = new ArrayList<>();
         Set<String> visited = new HashSet<>();
