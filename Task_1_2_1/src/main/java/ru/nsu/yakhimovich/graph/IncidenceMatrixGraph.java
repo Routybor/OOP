@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class IncidenceMatrixGraph implements Graph {
     private final List<String> vertices;  // Список вершин
-    private final List<String[]> edges;   // Список рёбер в виде двух массивов [fromVertex, toVertex]
+    private final List<String[]> edges;   // Список рёбер
     private int[][] incidenceMatrix; // Матрица инцидентности
     private int edgeCount; // Количество рёбер
 

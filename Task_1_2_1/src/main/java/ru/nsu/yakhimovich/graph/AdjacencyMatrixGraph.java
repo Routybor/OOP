@@ -153,7 +153,8 @@ public class AdjacencyMatrixGraph implements Graph {
             return false;
         }
         AdjacencyMatrixGraph that = (AdjacencyMatrixGraph) obj;
-        return Objects.equals(vertices, that.vertices) && Arrays.deepEquals(adjacencyMatrix, that.adjacencyMatrix);
+        return Objects.equals(vertices, that.vertices)
+                && Arrays.deepEquals(adjacencyMatrix, that.adjacencyMatrix);
     }
 
     /**
@@ -183,7 +184,8 @@ public class AdjacencyMatrixGraph implements Graph {
         int newSize = adjacencyMatrix.length * 2;
         boolean[][] newMatrix = new boolean[newSize][newSize];
         for (int i = 0; i < adjacencyMatrix.length; i++) {
-            System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, adjacencyMatrix[i].length);
+            System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i],
+                    0, adjacencyMatrix[i].length);
         }
         adjacencyMatrix = newMatrix;
     }

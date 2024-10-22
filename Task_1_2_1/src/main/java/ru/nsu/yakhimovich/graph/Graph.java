@@ -40,6 +40,13 @@ public interface Graph {
         return sortedList;
     }
 
+    /**
+     * Вспомогательный метод для рекурсивного выполнения топологической сортировки.
+     *
+     * @param vertex текущая вершина, для которой выполняется сортировка
+     * @param visited множество посещённых вершин
+     * @param stack стек, в который добавляются вершины после обработки
+     */
     default void topologicalSortUtil(String vertex, Set<String> visited, Stack<String> stack) {
         visited.add(vertex);
         for (String neighbor : getNeighbors(vertex)) {

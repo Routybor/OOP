@@ -12,7 +12,7 @@ public class AdjacencyListGraph implements Graph {
     private final Map<String, List<String>> adjacencyList; // Список смежности
 
     /**
-     *
+     * Инициализация объекта.
      */
     public AdjacencyListGraph() {
         this.adjacencyList = new HashMap<>();
