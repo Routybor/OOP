@@ -68,20 +68,20 @@ class Mul extends Expression {
 
         // Умножение констант
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
-            return new Number(simpleLeft.eval("") * simpleRight.eval(""));
+            return new Number(((Number) simpleLeft).getValue() * ((Number) simpleRight).getValue());
         }
 
         // Умножение на 0
-        if (simpleLeft instanceof Number && simpleLeft.eval("") == 0
-                || simpleRight instanceof Number && simpleRight.eval("") == 0) {
+        if (simpleLeft instanceof Number && ((Number) simpleLeft).getValue() == 0
+                || simpleRight instanceof Number && ((Number) simpleRight).getValue() == 0) {
             return new Number(0);
         }
 
         // Умножение на 1
-        if (simpleLeft instanceof Number && simpleLeft.eval("") == 1) {
+        if (simpleLeft instanceof Number && ((Number) simpleLeft).getValue() == 1) {
             return simpleRight;
         }
-        if (simpleRight instanceof Number && simpleRight.eval("") == 1) {
+        if (simpleRight instanceof Number && ((Number) simpleRight).getValue() == 1) {
             return simpleLeft;
         }
 

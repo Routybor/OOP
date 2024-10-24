@@ -66,7 +66,7 @@ class Add extends Expression {
 
         // Сложение констант
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
-            return new Number(simpleLeft.eval("") + simpleRight.eval(""));
+            return new Number(((Number) simpleLeft).getValue() + ((Number) simpleRight).getValue());
         }
 
         /*
@@ -75,11 +75,12 @@ class Add extends Expression {
            Перед получением значения необходимо удостовериться, что это число.
            Если этого не сделать - программа упадет, ведь попытается означить несущ переменную.
         */
-        if (simpleLeft instanceof Number && simpleLeft.eval("") == 0) {
-            return simpleRight;
+        if (simpleLeft instanceof Number && ((Number) simpleLeft).getValue() == 0) {
+            return simpleRight; // 0 + x => x
         }
-        if (simpleRight instanceof Number && simpleRight.eval("") == 0) {
-            return simpleLeft;
+
+        if (simpleRight instanceof Number && ((Number) simpleRight).getValue() == 0) {
+            return simpleLeft; // x + 0 => x
         }
         return new Add(simpleLeft, simpleRight);
     }

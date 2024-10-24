@@ -71,10 +71,10 @@ class Div extends Expression {
 
         // Деление констант
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
-            if (simpleRight.eval("") == 0) {
+            if (((Number) simpleRight).getValue() == 0) {
                 throw new ArithmeticException("Деление на ноль!");
             }
-            return new Number(simpleLeft.eval("") / simpleRight.eval(""));
+            return new Number(((Number) simpleLeft).getValue() / simpleRight.eval(""));
         }
 
         // Деление одинаковых выражений
@@ -83,12 +83,12 @@ class Div extends Expression {
         }
 
         // Деление 0
-        if (simpleLeft instanceof Number && simpleLeft.eval("") == 0) {
+        if (simpleLeft instanceof Number && ((Number) simpleLeft).getValue() == 0) {
             return new Number(0); // Деление 0
         }
 
         // Деление на 1
-        if (simpleRight instanceof Number && simpleRight.eval("") == 1) {
+        if (simpleRight instanceof Number && ((Number) simpleRight).getValue() == 1) {
             return simpleLeft; // Деление на 1
         }
         return new Div(simpleLeft, simpleRight);

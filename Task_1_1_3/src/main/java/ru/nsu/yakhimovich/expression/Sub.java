@@ -67,7 +67,7 @@ class Sub extends Expression {
 
         // Разность констант
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
-            return new Number(simpleLeft.eval("") - simpleRight.eval(""));
+            return new Number(((Number) simpleLeft).getValue() - ((Number) simpleRight).getValue());
         }
 
         // Вычитание одинаковых выражений
@@ -76,7 +76,7 @@ class Sub extends Expression {
         }
 
         // Вычитание 0
-        if (simpleRight instanceof Number && simpleRight.eval("") == 0) {
+        if (simpleRight instanceof Number && ((Number) simpleRight).getValue() == 0) {
             return simpleLeft;
         }
 

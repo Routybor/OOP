@@ -66,4 +66,12 @@ class Number extends Expression {
     public Expression simplify() {
         return this; // Число не упрощается
     }
+
+    /**
+     * Получение значения числа
+     * @return значение числа
+     */
+    public double getValue() {
+        return this.value;
+    }
 }

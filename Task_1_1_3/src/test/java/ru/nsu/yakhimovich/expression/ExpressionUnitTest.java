@@ -15,7 +15,7 @@ public class ExpressionUnitTest {
     double result;
 
     @Test
-    void expressioPrint() {
+    void expressionPrint() {
         System.out.println("Печать выражения");
         expression.print();
         Assertions.assertEquals(expression.toString(), "(3+(2*x))");

@@ -16,7 +16,6 @@ public class Main {
         System.out.print("Введите выражение = ");
         String inputExpression = scanner.nextLine();
         ExpressionParser parser = new ExpressionParser();
-        Expression expression = parser.parse(inputExpression);
         Expression parsedExpression = parser.parse(inputExpression);
         System.out.printf("%nСоздано выражение = %s%n", parsedExpression);
     }
