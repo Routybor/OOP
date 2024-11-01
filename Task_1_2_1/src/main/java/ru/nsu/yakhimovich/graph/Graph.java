@@ -2,6 +2,7 @@ package ru.nsu.yakhimovich.graph;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * Интерфейс, представляющий параметризованный граф.
@@ -53,14 +54,14 @@ public interface Graph<T> {
      * Чтение графа из файла с фиксированным форматом.
      *
      * @param fileName имя файла, из которого следует загрузить граф
-     * @param parser   функциональный параметр, используемый для парсинга строкового представления вершины
+     * @param parser   параметр, используемый для парсинга строкового представления вершины
      * @throws IOException если возникли ошибки при чтении файла
      */
-    void readFromFile(String fileName, java.util.function.Function<String, T> parser) throws IOException;
+    void readFromFile(String fileName, Function<String, T> parser) throws IOException;
 
     /**
-     * Выполнение топологической сортировки графа. Топологическая сортировка возможна только для
-     * ацикличных ориентированных графов.
+     * Выполнение топологической сортировки графа.
+     * Топологическая сортировка возможна только для ацикличных ориентированных графов.
      *
      * @return список вершин в порядке топологической сортировки
      */

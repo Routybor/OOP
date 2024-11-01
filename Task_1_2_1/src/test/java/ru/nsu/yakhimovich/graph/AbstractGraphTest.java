@@ -130,7 +130,8 @@ public abstract class AbstractGraphTest<T> {
         graph1.addEdge(parse("2"), parse("4"));
         graph1.addEdge(parse("3"), parse("2"));
         graph1.addEdge(parse("3"), parse("4"));
-        Assertions.assertEquals(List.of(parse("1"), parse("3"), parse("2"), parse("4")), graph1.topologicalSort());
+        Assertions.assertEquals(List.of(parse("1"), parse("3"),
+                parse("2"), parse("4")), graph1.topologicalSort());
     }
 
     /**
