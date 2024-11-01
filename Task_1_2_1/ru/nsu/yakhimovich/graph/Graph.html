@@ -115,19 +115,23 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.yakhimovich.graph</a></div>
-<h2 title="Interface Graph" class="title">Interface Graph</h2>
+<h2 title="Interface Graph" class="title">Interface Graph&lt;T&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - тип данных, используемый для представления вершин</dd>
+</dl>
+<dl>
 <dt>All Known Implementing Classes:</dt>
 <dd><code><a href="AdjacencyListGraph.html" title="class in ru.nsu.yakhimovich.graph">AdjacencyListGraph</a></code>, <code><a href="AdjacencyMatrixGraph.html" title="class in ru.nsu.yakhimovich.graph">AdjacencyMatrixGraph</a></code>, <code><a href="IncidenceMatrixGraph.html" title="class in ru.nsu.yakhimovich.graph">IncidenceMatrixGraph</a></code></dd>
 </dl>
 <hr>
-<pre>public interface <span class="typeNameLabel">Graph</span></pre>
-<div class="block">Реализация графа.</div>
+<pre>public interface <span class="typeNameLabel">Graph&lt;T&gt;</span></pre>
+<div class="block">Интерфейс, представляющий параметризованный граф.</div>
 </li>
 </ul>
 </div>
@@ -150,53 +154,68 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(java.lang.String,java.lang.String)">addEdge</a></span>&#8203;(java.lang.String&nbsp;fromVertex,
-       java.lang.String&nbsp;toVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(T,T)">addEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;fromVertex,
+       <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;toVertex)</code></th>
+<td class="colLast">
+<div class="block">Добавление направленного ребра между двумя вершинами.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(java.lang.String)">addVertex</a></span>&#8203;(java.lang.String&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
+<td class="colLast">
+<div class="block">Добавление вершины в граф.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNeighbors(java.lang.String)">getNeighbors</a></span>&#8203;(java.lang.String&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNeighbors(T)">getNeighbors</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
+<td class="colLast">
+<div class="block">Получение списка всех соседних вершин для заданной вершины.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertices()">getVertices</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Получение списка всех вершин графа.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readFromFile(java.lang.String)">readFromFile</a></span>&#8203;(java.lang.String&nbsp;fileName)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a></span>&#8203;(java.lang.String&nbsp;fileName,
+            java.util.function.Function&lt;java.lang.String,&#8203;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;parser)</code></th>
+<td class="colLast">
+<div class="block">Чтение графа из файла с фиксированным форматом.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(java.lang.String,java.lang.String)">removeEdge</a></span>&#8203;(java.lang.String&nbsp;fromVertex,
-          java.lang.String&nbsp;toVertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(T,T)">removeEdge</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;fromVertex,
+          <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;toVertex)</code></th>
+<td class="colLast">
+<div class="block">Удаление направленного ребра между двумя вершинами.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(java.lang.String)">removeVertex</a></span>&#8203;(java.lang.String&nbsp;vertex)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</code></th>
+<td class="colLast">
+<div class="block">Удаление вершины из графа + рёбра связанные с этой вершиной.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>default java.util.List&lt;java.lang.String&gt;</code></td>
+<td class="colFirst"><code>default java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#topologicalSort()">topologicalSort</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Топологическая сортировка графа.</div>
+<div class="block">Выполнение топологической сортировки графа.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#topologicalSortUtil(java.lang.String,java.util.Set,java.util.Stack)">topologicalSortUtil</a></span>&#8203;(java.lang.String&nbsp;vertex,
-                   java.util.Set&lt;java.lang.String&gt;&nbsp;visited,
-                   java.util.Stack&lt;java.lang.String&gt;&nbsp;stack)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#topologicalSortUtil(T,java.util.Set,java.util.Deque)">topologicalSortUtil</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex,
+                   java.util.Set&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;visited,
+                   java.util.Deque&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;stack)</code></th>
 <td class="colLast">
 <div class="block">Вспомогательный метод для рекурсивного выполнения топологической сортировки.</div>
 </td>
@@ -218,64 +237,109 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="addVertex(java.lang.String)">
+<a id="addVertex(java.lang.Object)">
+<!--   -->
+</a><a id="addVertex(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addVertex</h4>
-<pre class="methodSignature">void&nbsp;addVertex&#8203;(java.lang.String&nbsp;vertex)</pre>
+<pre class="methodSignature">void&nbsp;addVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</pre>
+<div class="block">Добавление вершины в граф.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - вершина, которая будет добавлена</dd>
+</dl>
 </li>
 </ul>
-<a id="removeVertex(java.lang.String)">
+<a id="removeVertex(java.lang.Object)">
+<!--   -->
+</a><a id="removeVertex(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeVertex</h4>
-<pre class="methodSignature">void&nbsp;removeVertex&#8203;(java.lang.String&nbsp;vertex)</pre>
+<pre class="methodSignature">void&nbsp;removeVertex&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</pre>
+<div class="block">Удаление вершины из графа + рёбра связанные с этой вершиной.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - вершина, которая будет удалена</dd>
+</dl>
 </li>
 </ul>
-<a id="addEdge(java.lang.String,java.lang.String)">
+<a id="addEdge(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="addEdge(T,T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addEdge</h4>
-<pre class="methodSignature">void&nbsp;addEdge&#8203;(java.lang.String&nbsp;fromVertex,
-             java.lang.String&nbsp;toVertex)</pre>
+<pre class="methodSignature">void&nbsp;addEdge&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;fromVertex,
+             <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;toVertex)</pre>
+<div class="block">Добавление направленного ребра между двумя вершинами.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>fromVertex</code> - вершина, от которой исходит ребро</dd>
+<dd><code>toVertex</code> - вершина, к которой ведет ребро</dd>
+</dl>
 </li>
 </ul>
-<a id="removeEdge(java.lang.String,java.lang.String)">
+<a id="removeEdge(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="removeEdge(T,T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeEdge</h4>
-<pre class="methodSignature">void&nbsp;removeEdge&#8203;(java.lang.String&nbsp;fromVertex,
-                java.lang.String&nbsp;toVertex)</pre>
+<pre class="methodSignature">void&nbsp;removeEdge&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;fromVertex,
+                <a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;toVertex)</pre>
+<div class="block">Удаление направленного ребра между двумя вершинами.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>fromVertex</code> - вершина, от которой исходит ребро</dd>
+<dd><code>toVertex</code> - вершина, к которой ведет ребро</dd>
+</dl>
 </li>
 </ul>
-<a id="getNeighbors(java.lang.String)">
+<a id="getNeighbors(java.lang.Object)">
+<!--   -->
+</a><a id="getNeighbors(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getNeighbors</h4>
-<pre class="methodSignature">java.util.List&lt;java.lang.String&gt;&nbsp;getNeighbors&#8203;(java.lang.String&nbsp;vertex)</pre>
+<pre class="methodSignature">java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;getNeighbors&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex)</pre>
+<div class="block">Получение списка всех соседних вершин для заданной вершины.
+ Соседние вершины — это вершины, в которые можно попасть по рёбрам из заданной вершины.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>vertex</code> - вершина, соседи которой запрашиваются</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>список соседних вершин</dd>
+</dl>
 </li>
 </ul>
-<a id="readFromFile(java.lang.String)">
+<a id="readFromFile(java.lang.String,java.util.function.Function)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>readFromFile</h4>
-<pre class="methodSignature">void&nbsp;readFromFile&#8203;(java.lang.String&nbsp;fileName)
+<pre class="methodSignature">void&nbsp;readFromFile&#8203;(java.lang.String&nbsp;fileName,
+                  java.util.function.Function&lt;java.lang.String,&#8203;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;parser)
            throws java.io.IOException</pre>
+<div class="block">Чтение графа из файла с фиксированным форматом.</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>fileName</code> - имя файла, из которого следует загрузить граф</dd>
+<dd><code>parser</code> - функциональный параметр, используемый для парсинга строкового представления вершины</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.IOException</code> - если возникли ошибки при чтении файла</dd>
 </dl>
 </li>
 </ul>
@@ -285,23 +349,26 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>topologicalSort</h4>
-<pre class="methodSignature">default&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;topologicalSort()</pre>
-<div class="block">Топологическая сортировка графа.</div>
+<pre class="methodSignature">default&nbsp;java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;topologicalSort()</pre>
+<div class="block">Выполнение топологической сортировки графа. Топологическая сортировка возможна только для
+ ацикличных ориентированных графов.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>массив вершин</dd>
+<dd>список вершин в порядке топологической сортировки</dd>
 </dl>
 </li>
 </ul>
-<a id="topologicalSortUtil(java.lang.String,java.util.Set,java.util.Stack)">
+<a id="topologicalSortUtil(java.lang.Object,java.util.Set,java.util.Deque)">
+<!--   -->
+</a><a id="topologicalSortUtil(T,java.util.Set,java.util.Deque)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>topologicalSortUtil</h4>
-<pre class="methodSignature">default&nbsp;void&nbsp;topologicalSortUtil&#8203;(java.lang.String&nbsp;vertex,
-                                 java.util.Set&lt;java.lang.String&gt;&nbsp;visited,
-                                 java.util.Stack&lt;java.lang.String&gt;&nbsp;stack)</pre>
+<pre class="methodSignature">default&nbsp;void&nbsp;topologicalSortUtil&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex,
+                                 java.util.Set&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;visited,
+                                 java.util.Deque&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;stack)</pre>
 <div class="block">Вспомогательный метод для рекурсивного выполнения топологической сортировки.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -317,7 +384,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getVertices</h4>
-<pre class="methodSignature">java.util.List&lt;java.lang.String&gt;&nbsp;getVertices()</pre>
+<pre class="methodSignature">java.util.List&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;getVertices()</pre>
+<div class="block">Получение списка всех вершин графа.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>список всех вершин в графе</dd>
+</dl>
 </li>
 </ul>
 </li>

@@ -115,14 +115,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">ru.nsu.yakhimovich.graph</a></div>
-<h2 title="Class IncidenceMatrixGraph" class="title">Class IncidenceMatrixGraph</h2>
+<h2 title="Class IncidenceMatrixGraph" class="title">Class IncidenceMatrixGraph&lt;T&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>ru.nsu.yakhimovich.graph.IncidenceMatrixGraph</li>
+<li>ru.nsu.yakhimovich.graph.IncidenceMatrixGraph&lt;T&gt;</li>
 </ul>
 </li>
 </ul>
@@ -130,13 +130,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - тип вершин в графе</dd>
+</dl>
+<dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></code></dd>
+<dd><code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;T&gt;</code></dd>
 </dl>
 <hr>
-<pre>public class <span class="typeNameLabel">IncidenceMatrixGraph</span>
+<pre>public class <span class="typeNameLabel">IncidenceMatrixGraph&lt;T&gt;</span>
 extends java.lang.Object
-implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></pre>
+implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;T&gt;</pre>
 <div class="block">Реализация графа через матрицу инцидентности.</div>
 </li>
 </ul>
@@ -184,15 +188,15 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(java.lang.String,java.lang.String)">addEdge</a></span>&#8203;(java.lang.String&nbsp;fromVertex,
-       java.lang.String&nbsp;toVertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(T,T)">addEdge</a></span>&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;fromVertex,
+       <a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;toVertex)</code></th>
 <td class="colLast">
 <div class="block">Добавление ребра.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(java.lang.String)">addVertex</a></span>&#8203;(java.lang.String&nbsp;vertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(T)">addVertex</a></span>&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Добавление вершины.</div>
 </td>
@@ -205,14 +209,14 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNeighbors(java.lang.String)">getNeighbors</a></span>&#8203;(java.lang.String&nbsp;vertex)</code></th>
+<td class="colFirst"><code>java.util.List&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNeighbors(T)">getNeighbors</a></span>&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;vertex)</code></th>
 <td class="colLast">
-<div class="block">Получение список вершин-соседей данной вершины.</div>
+<div class="block">Получение списка соседей вершины.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVertices()">getVertices</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Получение списка всех вершин.</div>
@@ -220,22 +224,23 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readFromFile(java.lang.String)">readFromFile</a></span>&#8203;(java.lang.String&nbsp;fileName)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a></span>&#8203;(java.lang.String&nbsp;fileName,
+            java.util.function.Function&lt;java.lang.String,&#8203;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;&nbsp;parser)</code></th>
 <td class="colLast">
-<div class="block">Получение графа из файла.</div>
+<div class="block">Чтение графа из файла.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(java.lang.String,java.lang.String)">removeEdge</a></span>&#8203;(java.lang.String&nbsp;fromVertex,
-          java.lang.String&nbsp;toVertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(T,T)">removeEdge</a></span>&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;fromVertex,
+          <a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;toVertex)</code></th>
 <td class="colLast">
 <div class="block">Удаление ребра.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(java.lang.String)">removeVertex</a></span>&#8203;(java.lang.String&nbsp;vertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Удаление вершины.</div>
 </td>
@@ -260,7 +265,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;ru.nsu.yakhimovich.graph.<a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></h3>
-<code><a href="Graph.html#topologicalSort()">topologicalSort</a>, <a href="Graph.html#topologicalSortUtil(java.lang.String,java.util.Set,java.util.Stack)">topologicalSortUtil</a></code></li>
+<code><a href="Graph.html#topologicalSort()">topologicalSort</a>, <a href="Graph.html#topologicalSortUtil(T,java.util.Set,java.util.Deque)">topologicalSortUtil</a></code></li>
 </ul>
 </li>
 </ul>
@@ -304,106 +309,118 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="addVertex(java.lang.String)">
+<a id="addVertex(java.lang.Object)">
+<!--   -->
+</a><a id="addVertex(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addVertex</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addVertex&#8203;(java.lang.String&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;addVertex&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;vertex)</pre>
 <div class="block">Добавление вершины.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#addVertex(java.lang.String)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></code></dd>
+<dd><code><a href="Graph.html#addVertex(T)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vertex</code> - имя вершины</dd>
+<dd><code>vertex</code> - вершина</dd>
 </dl>
 </li>
 </ul>
-<a id="removeVertex(java.lang.String)">
+<a id="removeVertex(java.lang.Object)">
+<!--   -->
+</a><a id="removeVertex(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeVertex</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(java.lang.String&nbsp;vertex)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;vertex)</pre>
 <div class="block">Удаление вершины.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#removeVertex(java.lang.String)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></code></dd>
+<dd><code><a href="Graph.html#removeVertex(T)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vertex</code> - имя вершины</dd>
+<dd><code>vertex</code> - вершина</dd>
 </dl>
 </li>
 </ul>
-<a id="addEdge(java.lang.String,java.lang.String)">
+<a id="addEdge(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="addEdge(T,T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addEdge</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addEdge&#8203;(java.lang.String&nbsp;fromVertex,
-                    java.lang.String&nbsp;toVertex)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;addEdge&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;fromVertex,
+                    <a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;toVertex)</pre>
 <div class="block">Добавление ребра.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#addEdge(java.lang.String,java.lang.String)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></code></dd>
+<dd><code><a href="Graph.html#addEdge(T,T)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>fromVertex</code> - имя вершины, от которой направлено ребро</dd>
-<dd><code>toVertex</code> - имя вершины, к которой направлено ребро</dd>
+<dd><code>fromVertex</code> - вершина, от которой направлено ребро</dd>
+<dd><code>toVertex</code> - вершина, к которой направлено ребро</dd>
 </dl>
 </li>
 </ul>
-<a id="removeEdge(java.lang.String,java.lang.String)">
+<a id="removeEdge(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="removeEdge(T,T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeEdge</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(java.lang.String&nbsp;fromVertex,
-                       java.lang.String&nbsp;toVertex)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;fromVertex,
+                       <a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;toVertex)</pre>
 <div class="block">Удаление ребра.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#removeEdge(java.lang.String,java.lang.String)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></code></dd>
+<dd><code><a href="Graph.html#removeEdge(T,T)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>fromVertex</code> - имя вершины, от которой направлено ребро</dd>
-<dd><code>toVertex</code> - имя вершины, к которой направлено ребро</dd>
+<dd><code>fromVertex</code> - вершина, от которой направлено ребро</dd>
+<dd><code>toVertex</code> - вершина, к которой направлено ребро</dd>
 </dl>
 </li>
 </ul>
-<a id="getNeighbors(java.lang.String)">
+<a id="getNeighbors(java.lang.Object)">
+<!--   -->
+</a><a id="getNeighbors(T)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getNeighbors</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;getNeighbors&#8203;(java.lang.String&nbsp;vertex)</pre>
-<div class="block">Получение список вершин-соседей данной вершины.</div>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;&nbsp;getNeighbors&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;vertex)</pre>
+<div class="block">Получение списка соседей вершины.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#getNeighbors(java.lang.String)">getNeighbors</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></code></dd>
+<dd><code><a href="Graph.html#getNeighbors(T)">getNeighbors</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vertex</code> - имя вершины</dd>
+<dd><code>vertex</code> - вершина</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>список соседей</dd>
 </dl>
 </li>
 </ul>
-<a id="readFromFile(java.lang.String)">
+<a id="readFromFile(java.lang.String,java.util.function.Function)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>readFromFile</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;readFromFile&#8203;(java.lang.String&nbsp;fileName)
+<pre class="methodSignature">public&nbsp;void&nbsp;readFromFile&#8203;(java.lang.String&nbsp;fileName,
+                         java.util.function.Function&lt;java.lang.String,&#8203;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;&nbsp;parser)
                   throws java.io.IOException</pre>
-<div class="block">Получение графа из файла.</div>
+<div class="block">Чтение графа из файла.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#readFromFile(java.lang.String)">readFromFile</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></code></dd>
+<dd><code><a href="Graph.html#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>fileName</code> - имя файла</dd>
+<dd><code>parser</code> - функция для преобразования строки в объект типа T</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - ошибка чтения</dd>
 </dl>
@@ -415,11 +432,11 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 <ul class="blockList">
 <li class="blockList">
 <h4>getVertices</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;getVertices()</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;&nbsp;getVertices()</pre>
 <div class="block">Получение списка всех вершин.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></code></dd>
+<dd><code><a href="Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>список всех вершин</dd>
 </dl>
@@ -437,9 +454,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>obj</code> - граф, с которым необходимо провести сравнение.</dd>
+<dd><code>obj</code> - граф для сравнения</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>True/False</dd>
+<dd>true/false</dd>
 </dl>
 </li>
 </ul>
