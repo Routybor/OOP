@@ -4,13 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * Реализация графа через матрицу смежности.
+ *
+ * @param <T> тип данных, представляющий вершины графа
  */
-public class AdjacencyMatrixGraph implements Graph {
-    private final Map<String, Integer> vertexIndexMap;
-    private final List<String> vertices;
+public class AdjacencyMatrixGraph<T> implements Graph<T> {
+    private final Map<T, Integer> vertexIndexMap;
+    private final List<T> vertices;
     private boolean[][] adjacencyMatrix;
 
     /**
@@ -27,10 +30,10 @@ public class AdjacencyMatrixGraph implements Graph {
     /**
      * Добавление вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      */
     @Override
-    public void addVertex(String vertex) {
+    public void addVertex(T vertex) {
         if (!vertexIndexMap.containsKey(vertex)) {
             vertexIndexMap.put(vertex, vertices.size());
             vertices.add(vertex);
@@ -43,10 +46,10 @@ public class AdjacencyMatrixGraph implements Graph {
     /**
      * Удаление вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      */
     @Override
-    public void removeVertex(String vertex) {
+    public void removeVertex(T vertex) {
         if (vertexIndexMap.containsKey(vertex)) {
             int index = vertexIndexMap.remove(vertex);
             vertices.remove(vertex);
@@ -60,11 +63,11 @@ public class AdjacencyMatrixGraph implements Graph {
     /**
      * Добавление ребра.
      *
-     * @param fromVertex имя вершины, от которой направлено ребро
-     * @param toVertex   имя вершины, к которой направлено ребро
+     * @param fromVertex вершина, от которой направлено ребро
+     * @param toVertex   вершина, к которой направлено ребро
      */
     @Override
-    public void addEdge(String fromVertex, String toVertex) {
+    public void addEdge(T fromVertex, T toVertex) {
         if (vertexIndexMap.containsKey(fromVertex) && vertexIndexMap.containsKey(toVertex)) {
             int fromIndex = vertexIndexMap.get(fromVertex);
             int toIndex = vertexIndexMap.get(toVertex);
@@ -75,11 +78,11 @@ public class AdjacencyMatrixGraph implements Graph {
     /**
      * Удаление ребра.
      *
-     * @param fromVertex имя вершины, от которой направлено ребро
-     * @param toVertex   имя вершины, к которой направлено ребро
+     * @param fromVertex вершина, от которой направлено ребро
+     * @param toVertex   вершина, к которой направлено ребро
      */
     @Override
-    public void removeEdge(String fromVertex, String toVertex) {
+    public void removeEdge(T fromVertex, T toVertex) {
         if (vertexIndexMap.containsKey(fromVertex) && vertexIndexMap.containsKey(toVertex)) {
             int fromIndex = vertexIndexMap.get(fromVertex);
             int toIndex = vertexIndexMap.get(toVertex);
@@ -88,14 +91,14 @@ public class AdjacencyMatrixGraph implements Graph {
     }
 
     /**
-     * Получение список вершин-соседей данной вершины.
+     * Получение списка вершин-соседей данной вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      * @return список соседей
      */
     @Override
-    public List<String> getNeighbors(String vertex) {
-        List<String> neighbors = new ArrayList<>();
+    public List<T> getNeighbors(T vertex) {
+        List<T> neighbors = new ArrayList<>();
         if (vertexIndexMap.containsKey(vertex)) {
             int index = vertexIndexMap.get(vertex);
             for (int i = 0; i < vertices.size(); i++) {
@@ -111,18 +114,21 @@ public class AdjacencyMatrixGraph implements Graph {
      * Получение графа из файла.
      *
      * @param fileName имя файла
+     * @param parser   функция для преобразования строки в объект типа T
      * @throws IOException ошибка чтения
      */
     @Override
-    public void readFromFile(String fileName) throws IOException {
+    public void readFromFile(String fileName, Function<String, T> parser) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
                 if (parts.length == 2) {
-                    addVertex(parts[0]);
-                    addVertex(parts[1]);
-                    addEdge(parts[0], parts[1]);
+                    T vertex1 = parser.apply(parts[0]);
+                    T vertex2 = parser.apply(parts[1]);
+                    addVertex(vertex1);
+                    addVertex(vertex2);
+                    addEdge(vertex1, vertex2);
                 }
             }
         }
@@ -134,14 +140,14 @@ public class AdjacencyMatrixGraph implements Graph {
      * @return список всех вершин
      */
     @Override
-    public List<String> getVertices() {
+    public List<T> getVertices() {
         return new ArrayList<>(vertices);
     }
 
     /**
      * Равенство графов.
      *
-     * @param obj граф, с которым необходимо провести сравнение.
+     * @param obj граф, с которым необходимо провести сравнение
      * @return True/False
      */
     @Override
@@ -152,7 +158,7 @@ public class AdjacencyMatrixGraph implements Graph {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        AdjacencyMatrixGraph that = (AdjacencyMatrixGraph) obj;
+        AdjacencyMatrixGraph<?> that = (AdjacencyMatrixGraph<?>) obj;
         return Objects.equals(vertices, that.vertices)
                 && Arrays.deepEquals(adjacencyMatrix, that.adjacencyMatrix);
     }
@@ -184,8 +190,7 @@ public class AdjacencyMatrixGraph implements Graph {
         int newSize = adjacencyMatrix.length * 2;
         boolean[][] newMatrix = new boolean[newSize][newSize];
         for (int i = 0; i < adjacencyMatrix.length; i++) {
-            System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i],
-                    0, adjacencyMatrix[i].length);
+            System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, adjacencyMatrix[i].length);
         }
         adjacencyMatrix = newMatrix;
     }

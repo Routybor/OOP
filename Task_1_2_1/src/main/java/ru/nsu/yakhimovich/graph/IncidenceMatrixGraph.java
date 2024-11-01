@@ -3,19 +3,19 @@ package ru.nsu.yakhimovich.graph;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Function;
 
 /**
  * Реализация графа через матрицу инцидентности.
+ *
+ * @param <T> тип вершин в графе
  */
-public class IncidenceMatrixGraph implements Graph {
-    private final List<String> vertices;  // Список вершин
-    private final List<String[]> edges;   // Список рёбер
-    private int[][] incidenceMatrix; // Матрица инцидентности
-    private int edgeCount; // Количество рёбер
+public class IncidenceMatrixGraph<T> implements Graph<T> {
+    private final List<T> vertices;      // Список вершин
+    private final List<T[]> edges;       // Список рёбер
+    private int[][] incidenceMatrix;     // Матрица инцидентности
+    private int edgeCount;               // Количество рёбер
 
     /**
      * Инициализация объекта с указанным размером.
@@ -33,10 +33,10 @@ public class IncidenceMatrixGraph implements Graph {
     /**
      * Добавление вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      */
     @Override
-    public void addVertex(String vertex) {
+    public void addVertex(T vertex) {
         if (!vertices.contains(vertex)) {
             vertices.add(vertex);
             if (vertices.size() > incidenceMatrix.length) {
@@ -48,15 +48,15 @@ public class IncidenceMatrixGraph implements Graph {
     /**
      * Удаление вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      */
     @Override
-    public void removeVertex(String vertex) {
+    public void removeVertex(T vertex) {
         int vertexIndex = vertices.indexOf(vertex);
         if (vertexIndex != -1) {
             vertices.remove(vertexIndex);
             for (int i = 0; i < edgeCount; i++) {
-                incidenceMatrix[vertexIndex][i] = 0; // Удаление инцидентных ребер
+                incidenceMatrix[vertexIndex][i] = 0; // Удаление инцидентных рёбер
             }
             for (int i = vertexIndex; i < vertices.size(); i++) {
                 incidenceMatrix[i] = incidenceMatrix[i + 1]; // Сдвиг строк
@@ -67,13 +67,13 @@ public class IncidenceMatrixGraph implements Graph {
     /**
      * Добавление ребра.
      *
-     * @param fromVertex имя вершины, от которой направлено ребро
-     * @param toVertex   имя вершины, к которой направлено ребро
+     * @param fromVertex вершина, от которой направлено ребро
+     * @param toVertex   вершина, к которой направлено ребро
      */
     @Override
-    public void addEdge(String fromVertex, String toVertex) {
+    public void addEdge(T fromVertex, T toVertex) {
         if (vertices.contains(fromVertex) && vertices.contains(toVertex)) {
-            edges.add(new String[]{fromVertex, toVertex});
+            edges.add((T[]) new Object[]{fromVertex, toVertex});
             if (edgeCount >= incidenceMatrix[0].length) {
                 resizeEdgeMatrix();
             }
@@ -88,11 +88,11 @@ public class IncidenceMatrixGraph implements Graph {
     /**
      * Удаление ребра.
      *
-     * @param fromVertex имя вершины, от которой направлено ребро
-     * @param toVertex   имя вершины, к которой направлено ребро
+     * @param fromVertex вершина, от которой направлено ребро
+     * @param toVertex   вершина, к которой направлено ребро
      */
     @Override
-    public void removeEdge(String fromVertex, String toVertex) {
+    public void removeEdge(T fromVertex, T toVertex) {
         for (int i = 0; i < edgeCount; i++) {
             if (edges.get(i)[0].equals(fromVertex) && edges.get(i)[1].equals(toVertex)) {
                 edges.remove(i);
@@ -111,14 +111,14 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     /**
-     * Получение список вершин-соседей данной вершины.
+     * Получение списка соседей вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      * @return список соседей
      */
     @Override
-    public List<String> getNeighbors(String vertex) {
-        List<String> neighbors = new ArrayList<>();
+    public List<T> getNeighbors(T vertex) {
+        List<T> neighbors = new ArrayList<>();
         int vertexIndex = vertices.indexOf(vertex);
         if (vertexIndex != -1) {
             for (int i = 0; i < edgeCount; i++) {
@@ -135,21 +135,24 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     /**
-     * Получение графа из файла.
+     * Чтение графа из файла.
      *
      * @param fileName имя файла
+     * @param parser   функция для преобразования строки в объект типа T
      * @throws IOException ошибка чтения
      */
     @Override
-    public void readFromFile(String fileName) throws IOException {
+    public void readFromFile(String fileName, Function<String, T> parser) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
                 if (parts.length == 2) {
-                    addVertex(parts[0]);
-                    addVertex(parts[1]);
-                    addEdge(parts[0], parts[1]);
+                    T fromVertex = parser.apply(parts[0]);
+                    T toVertex = parser.apply(parts[1]);
+                    addVertex(fromVertex);
+                    addVertex(toVertex);
+                    addEdge(fromVertex, toVertex);
                 }
             }
         }
@@ -161,15 +164,15 @@ public class IncidenceMatrixGraph implements Graph {
      * @return список всех вершин
      */
     @Override
-    public List<String> getVertices() {
+    public List<T> getVertices() {
         return new ArrayList<>(vertices);
     }
 
     /**
      * Равенство графов.
      *
-     * @param obj граф, с которым необходимо провести сравнение.
-     * @return True/False
+     * @param obj граф для сравнения
+     * @return true/false
      */
     @Override
     public boolean equals(Object obj) {
@@ -179,7 +182,7 @@ public class IncidenceMatrixGraph implements Graph {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        IncidenceMatrixGraph that = (IncidenceMatrixGraph) obj;
+        IncidenceMatrixGraph<?> that = (IncidenceMatrixGraph<?>) obj;
         return edgeCount == that.edgeCount && Objects.equals(vertices, that.vertices)
                 && Arrays.deepEquals(incidenceMatrix, that.incidenceMatrix);
     }
@@ -192,10 +195,10 @@ public class IncidenceMatrixGraph implements Graph {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (String vertex : vertices) {
+        for (T vertex : vertices) {
             sb.append(vertex).append(": ");
-            List<String> neighbors = getNeighbors(vertex);
-            for (String neighbor : neighbors) {
+            List<T> neighbors = getNeighbors(vertex);
+            for (T neighbor : neighbors) {
                 sb.append(neighbor).append(" ");
             }
             sb.append("\n");
@@ -216,7 +219,7 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     /**
-     * Увеличение размера матрицы ребер при переполнении.
+     * Увеличение размера матрицы рёбер при переполнении.
      */
     private void resizeEdgeMatrix() {
         int newSize = incidenceMatrix[0].length * 2;

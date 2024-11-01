@@ -5,20 +5,21 @@ import org.junit.jupiter.api.BeforeEach;
 /**
  * Использование абстрактных тестов для реализации через матрицу смежности.
  */
-public class AdjacencyMatrixGraphTest extends AbstractGraphTest {
+public class AdjacencyMatrixGraphTest extends AbstractGraphTest<String> {
+
     @BeforeEach
     @Override
     public void setUp() {
-        graph = new AdjacencyMatrixGraph(5);
+        graph = new AdjacencyMatrixGraph<>(5); // Ensure to use the generic type
     }
 
     @Override
-    protected Graph createGraph() {
-        return new AdjacencyMatrixGraph(5);
+    protected Graph<String> createGraph() {
+        return new AdjacencyMatrixGraph<>(5); // Ensure to use the generic type
     }
 
     @Override
-    protected Graph createGraphWithCapacity() {
-        return new AdjacencyMatrixGraph(3);
+    protected Graph<String> createGraphWithCapacity() {
+        return new AdjacencyMatrixGraph<>(3); // Ensure to use the generic type
     }
 }

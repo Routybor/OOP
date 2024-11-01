@@ -4,12 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * Реализация графа через список смежности.
+ *
+ * @param <T> тип вершин в графе
  */
-public class AdjacencyListGraph implements Graph {
-    private final Map<String, List<String>> adjacencyList; // Список смежности
+public class AdjacencyListGraph<T> implements Graph<T> {
+    private final Map<T, List<T>> adjacencyList; // Список смежности
 
     /**
      * Инициализация объекта.
@@ -21,22 +24,22 @@ public class AdjacencyListGraph implements Graph {
     /**
      * Добавление вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      */
     @Override
-    public void addVertex(String vertex) {
+    public void addVertex(T vertex) {
         adjacencyList.putIfAbsent(vertex, new ArrayList<>());
     }
 
     /**
      * Удаление вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      */
     @Override
-    public void removeVertex(String vertex) {
+    public void removeVertex(T vertex) {
         adjacencyList.remove(vertex);
-        for (List<String> neighbors : adjacencyList.values()) {
+        for (List<T> neighbors : adjacencyList.values()) {
             neighbors.remove(vertex);
         }
     }
@@ -44,11 +47,11 @@ public class AdjacencyListGraph implements Graph {
     /**
      * Добавление ребра.
      *
-     * @param fromVertex имя вершины, от которой направлено ребро
-     * @param toVertex   имя вершины, к которой направлено ребро
+     * @param fromVertex вершина, от которой направлено ребро
+     * @param toVertex   вершина, к которой направлено ребро
      */
     @Override
-    public void addEdge(String fromVertex, String toVertex) {
+    public void addEdge(T fromVertex, T toVertex) {
         if (adjacencyList.containsKey(fromVertex) && adjacencyList.containsKey(toVertex)) {
             adjacencyList.get(fromVertex).add(toVertex);
         }
@@ -57,24 +60,24 @@ public class AdjacencyListGraph implements Graph {
     /**
      * Удаление ребра.
      *
-     * @param fromVertex имя вершины, от которой направлено ребро
-     * @param toVertex   имя вершины, к которой направлено ребро
+     * @param fromVertex вершина, от которой направлено ребро
+     * @param toVertex   вершина, к которой направлено ребро
      */
     @Override
-    public void removeEdge(String fromVertex, String toVertex) {
+    public void removeEdge(T fromVertex, T toVertex) {
         if (adjacencyList.containsKey(fromVertex)) {
             adjacencyList.get(fromVertex).remove(toVertex);
         }
     }
 
     /**
-     * Получение список вершин-соседей данной вершины.
+     * Получение списка вершин-соседей данной вершины.
      *
-     * @param vertex имя вершины
+     * @param vertex вершина
      * @return список соседей
      */
     @Override
-    public List<String> getNeighbors(String vertex) {
+    public List<T> getNeighbors(T vertex) {
         return adjacencyList.getOrDefault(vertex, Collections.emptyList());
     }
 
@@ -82,18 +85,21 @@ public class AdjacencyListGraph implements Graph {
      * Получение графа из файла.
      *
      * @param fileName имя файла
+     * @param parser   функция для преобразования строки в объект типа T
      * @throws IOException ошибка чтения
      */
     @Override
-    public void readFromFile(String fileName) throws IOException {
+    public void readFromFile(String fileName, Function<String, T> parser) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
                 if (parts.length == 2) {
-                    addVertex(parts[0]);
-                    addVertex(parts[1]);
-                    addEdge(parts[0], parts[1]);
+                    T vertex1 = parser.apply(parts[0]);
+                    T vertex2 = parser.apply(parts[1]);
+                    addVertex(vertex1);
+                    addVertex(vertex2);
+                    addEdge(vertex1, vertex2);
                 }
             }
         }
@@ -105,14 +111,14 @@ public class AdjacencyListGraph implements Graph {
      * @return список всех вершин
      */
     @Override
-    public List<String> getVertices() {
+    public List<T> getVertices() {
         return new ArrayList<>(adjacencyList.keySet());
     }
 
     /**
      * Равенство графов.
      *
-     * @param obj граф, с которым необходимо провести сравнение.
+     * @param obj граф, с которым необходимо провести сравнение
      * @return True/False
      */
     @Override
@@ -123,7 +129,7 @@ public class AdjacencyListGraph implements Graph {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        AdjacencyListGraph that = (AdjacencyListGraph) obj;
+        AdjacencyListGraph<?> that = (AdjacencyListGraph<?>) obj;
         return Objects.equals(adjacencyList, that.adjacencyList);
     }
 
@@ -135,9 +141,9 @@ public class AdjacencyListGraph implements Graph {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (String vertex : adjacencyList.keySet()) {
+        for (T vertex : adjacencyList.keySet()) {
             sb.append(vertex).append(": ");
-            for (String neighbor : adjacencyList.get(vertex)) {
+            for (T neighbor : adjacencyList.get(vertex)) {
                 sb.append(neighbor).append(" ");
             }
             sb.append("\n");
