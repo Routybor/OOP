@@ -67,14 +67,15 @@ class Mul extends Expression {
         Expression simpleRight = right.simplify();
 
         // Умножение констант
-        if (simpleLeft instanceof Number simpleLeftNumber &&
-                simpleRight instanceof Number simpleRightNumber) {
+        if (simpleLeft instanceof Number simpleLeftNumber
+                && simpleRight instanceof Number simpleRightNumber) {
             return new Number(simpleLeftNumber.getValue() * simpleRightNumber.getValue());
         }
 
         // Умножение на 0
-        if ((simpleLeft instanceof Number simpleLeftNumber && simpleLeftNumber.getValue() == 0) ||
-                (simpleRight instanceof Number simpleRightNumber && simpleRightNumber.getValue() == 0)) {
+        if ((simpleLeft instanceof Number simpleLeftNumber && simpleLeftNumber.getValue() == 0)
+                || (simpleRight instanceof Number simpleRightNumber
+                && simpleRightNumber.getValue() == 0)) {
             return new Number(0);
         }
 

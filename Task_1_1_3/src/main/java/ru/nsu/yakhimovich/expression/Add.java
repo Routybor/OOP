@@ -65,8 +65,8 @@ class Add extends Expression {
         Expression simpleRight = right.simplify();
 
         // Сложение констант
-        if (simpleLeft instanceof Number simpleLeftNumber &&
-                simpleRight instanceof Number simpleRightNumber) {
+        if (simpleLeft instanceof Number simpleLeftNumber
+                && simpleRight instanceof Number simpleRightNumber) {
             return new Number(simpleLeftNumber.getValue() + simpleRightNumber.getValue());
         }
 

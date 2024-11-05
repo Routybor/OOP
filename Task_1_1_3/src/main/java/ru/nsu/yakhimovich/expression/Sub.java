@@ -66,8 +66,8 @@ class Sub extends Expression {
         Expression simpleRight = right.simplify();
 
         // Разность констант
-        if (simpleLeft instanceof Number simpleLeftNumber &&
-                simpleRight instanceof Number simpleRightNumber) {
+        if (simpleLeft instanceof Number simpleLeftNumber
+                && simpleRight instanceof Number simpleRightNumber) {
             return new Number(simpleLeftNumber.getValue() - simpleRightNumber.getValue());
         }
 

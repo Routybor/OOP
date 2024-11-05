@@ -70,8 +70,8 @@ class Div extends Expression {
         Expression simpleRight = right.simplify();
 
         // Деление констант
-        if (simpleLeft instanceof Number simpleLeftNumber &&
-                simpleRight instanceof Number simpleRightNumber) {
+        if (simpleLeft instanceof Number simpleLeftNumber
+                && simpleRight instanceof Number simpleRightNumber) {
             if (simpleRightNumber.getValue() == 0) {
                 throw new ArithmeticException("Деление на ноль!");
             }

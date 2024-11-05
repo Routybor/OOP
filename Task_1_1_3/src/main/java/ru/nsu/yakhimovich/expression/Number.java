@@ -68,7 +68,8 @@ class Number extends Expression {
     }
 
     /**
-     * Получение значения числа
+     * Получение значения числа.
+     *
      * @return значение числа
      */
     public double getValue() {
