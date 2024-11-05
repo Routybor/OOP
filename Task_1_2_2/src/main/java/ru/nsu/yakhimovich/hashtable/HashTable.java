@@ -259,7 +259,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
                 }
             }
         }
-        if (sb.length() > 1) sb.setLength(sb.length() - 2);
+        if (sb.length() > 1) {
+            sb.setLength(sb.length() - 2);
+        }
         sb.append("}");
         return sb.toString();
     }
