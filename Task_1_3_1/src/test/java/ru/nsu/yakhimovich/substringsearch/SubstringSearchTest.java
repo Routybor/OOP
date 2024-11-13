@@ -5,9 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Тесты поиска подстроки.
@@ -16,6 +16,13 @@ public class SubstringSearchTest {
 
     private String curTestFile;
 
+    /**
+     * Создание файла для теста.
+     *
+     * @param fileName имя файла
+     * @param content  наполнение файла
+     * @throws IOException ошибка создания/записи
+     */
     private void createTestFile(String fileName, String content) throws IOException {
         curTestFile = fileName; // Сохранение имя текущего файла для последующего удаления
         try (FileWriter writer = new FileWriter(fileName)) {
@@ -23,6 +30,9 @@ public class SubstringSearchTest {
         }
     }
 
+    /**
+     * Удаление файлов для тестов.
+     */
     @AfterEach
     public void deleteTestFile() {
         if (curTestFile != null) {
@@ -40,7 +50,7 @@ public class SubstringSearchTest {
         createTestFile(fileName, "абракадабра");
 
         List<Integer> result = SubstringSearch.find(fileName, "бра");
-        assertEquals(List.of(1, 8), result, "Indices should match expected values [1, 8]");
+        Assertions.assertEquals(List.of(1, 8), result, "Ожидалось. Индексы = [1, 8]");
     }
 
     @Test
@@ -49,7 +59,7 @@ public class SubstringSearchTest {
         createTestFile(fileName, "hello world");
 
         List<Integer> result = SubstringSearch.find(fileName, "world");
-        assertEquals(List.of(6), result, "Index should be [6]");
+        Assertions.assertEquals(List.of(6), result, "Ожидалось. Индексы = [6]");
     }
 
     @Test
@@ -58,7 +68,7 @@ public class SubstringSearchTest {
         createTestFile(fileName, "abcdefg");
 
         List<Integer> result = SubstringSearch.find(fileName, "xyz");
-        assertEquals(List.of(), result, "There should be no matches");
+        Assertions.assertEquals(List.of(), result, "Ожидалось. Не найдено");
     }
 
     @Test
@@ -67,7 +77,7 @@ public class SubstringSearchTest {
         createTestFile(fileName, "abra");
 
         List<Integer> result = SubstringSearch.find(fileName, "abra");
-        assertEquals(List.of(0), result, "Index should be [0]");
+        Assertions.assertEquals(List.of(0), result, "Ожидалось. Индексы = [0]");
     }
 
     @Test
@@ -76,6 +86,6 @@ public class SubstringSearchTest {
         createTestFile(fileName, "абракадабра".repeat(1000000));
 
         List<Integer> result = SubstringSearch.find(fileName, "бра");
-        assertEquals(2000000, result.size(), "Should find 200,000 occurrences");
+        Assertions.assertEquals(2000000, result.size(), "Ожидалось. 200,000 вхождений");
     }
 }
