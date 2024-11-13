@@ -1,11 +1,13 @@
-package ru.nsu.yakhimovich.graph;
+package ru.nsu.yakhimovich.graph.integer;
 
 import org.junit.jupiter.api.BeforeEach;
+import ru.nsu.yakhimovich.graph.Graph;
+import ru.nsu.yakhimovich.graph.IncidenceMatrixGraph;
 
 /**
  * Использование абстрактных тестов для реализации через матрицу инцидентности.
  */
-public class IncidenceMatrixGraphTest extends AbstractGraphTest<String> {
+public class IncidenceMatrixIntGraphTest extends AbstractIntGraphTest {
     @BeforeEach
     @Override
     public void setUp() {
@@ -13,12 +15,12 @@ public class IncidenceMatrixGraphTest extends AbstractGraphTest<String> {
     }
 
     @Override
-    protected Graph<String> createGraph() {
+    protected Graph<Integer> createGraph() {
         return new IncidenceMatrixGraph<>(5, 5);
     }
 
     @Override
-    protected Graph<String> createGraphWithCapacity() {
+    protected Graph<Integer> createGraphWithCapacity() {
         return new IncidenceMatrixGraph<>(3, 3);
     }
 }

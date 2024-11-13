@@ -1,11 +1,13 @@
-package ru.nsu.yakhimovich.graph;
+package ru.nsu.yakhimovich.graph.string;
 
 import org.junit.jupiter.api.BeforeEach;
+import ru.nsu.yakhimovich.graph.AdjacencyListGraph;
+import ru.nsu.yakhimovich.graph.Graph;
 
 /**
  * Использование абстрактных тестов для реализации через список смежности.
  */
-public class AdjacencyListGraphTest extends AbstractGraphTest<String> {
+public class AdjacencyListStrGraphTest extends AbstractStrGraphTest {
 
     @BeforeEach
     @Override
