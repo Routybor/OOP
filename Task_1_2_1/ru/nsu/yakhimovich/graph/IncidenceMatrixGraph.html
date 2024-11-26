@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -224,28 +224,20 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a></span>&#8203;(java.lang.String&nbsp;fileName,
-            java.util.function.Function&lt;java.lang.String,&#8203;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;&nbsp;parser)</code></th>
-<td class="colLast">
-<div class="block">Чтение графа из файла.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(T,T)">removeEdge</a></span>&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;fromVertex,
           <a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;toVertex)</code></th>
 <td class="colLast">
 <div class="block">Удаление ребра.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(T)">removeVertex</a></span>&#8203;(<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Удаление вершины.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -265,7 +257,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;ru.nsu.yakhimovich.graph.<a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a></h3>
-<code><a href="Graph.html#topologicalSort()">topologicalSort</a>, <a href="Graph.html#topologicalSortUtil(T,java.util.Set,java.util.Deque)">topologicalSortUtil</a></code></li>
+<code><a href="Graph.html#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a>, <a href="Graph.html#topologicalSort()">topologicalSort</a></code></li>
 </ul>
 </li>
 </ul>
@@ -402,27 +394,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Gr
 <dd><code>vertex</code> - вершина</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>список соседей</dd>
-</dl>
-</li>
-</ul>
-<a id="readFromFile(java.lang.String,java.util.function.Function)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>readFromFile</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;readFromFile&#8203;(java.lang.String&nbsp;fileName,
-                         java.util.function.Function&lt;java.lang.String,&#8203;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;&nbsp;parser)
-                  throws java.io.IOException</pre>
-<div class="block">Чтение графа из файла.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.yakhimovich.graph">Graph</a>&lt;<a href="IncidenceMatrixGraph.html" title="type parameter in IncidenceMatrixGraph">T</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>fileName</code> - имя файла</dd>
-<dd><code>parser</code> - функция для преобразования строки в объект типа T</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.IOException</code> - ошибка чтения</dd>
 </dl>
 </li>
 </ul>

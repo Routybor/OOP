@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":18,"i8":18};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":18,"i5":6,"i6":6,"i7":18};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -182,7 +182,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>default void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a></span>&#8203;(java.lang.String&nbsp;fileName,
             java.util.function.Function&lt;java.lang.String,&#8203;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;parser)</code></th>
 <td class="colLast">
@@ -209,15 +209,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#topologicalSort()">topologicalSort</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Выполнение топологической сортировки графа.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>default void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#topologicalSortUtil(T,java.util.Set,java.util.Deque)">topologicalSortUtil</a></span>&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex,
-                   java.util.Set&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;visited,
-                   java.util.Deque&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;stack)</code></th>
-<td class="colLast">
-<div class="block">Вспомогательный метод для рекурсивного выполнения топологической сортировки.</div>
 </td>
 </tr>
 </table>
@@ -330,9 +321,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>readFromFile</h4>
-<pre class="methodSignature">void&nbsp;readFromFile&#8203;(java.lang.String&nbsp;fileName,
-                  java.util.function.Function&lt;java.lang.String,&#8203;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;parser)
-           throws java.io.IOException</pre>
+<pre class="methodSignature">default&nbsp;void&nbsp;readFromFile&#8203;(java.lang.String&nbsp;fileName,
+                          java.util.function.Function&lt;java.lang.String,&#8203;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;parser)
+                   throws java.io.IOException</pre>
 <div class="block">Чтение графа из файла с фиксированным форматом.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -355,26 +346,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>список вершин в порядке топологической сортировки</dd>
-</dl>
-</li>
-</ul>
-<a id="topologicalSortUtil(java.lang.Object,java.util.Set,java.util.Deque)">
-<!--   -->
-</a><a id="topologicalSortUtil(T,java.util.Set,java.util.Deque)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>topologicalSortUtil</h4>
-<pre class="methodSignature">default&nbsp;void&nbsp;topologicalSortUtil&#8203;(<a href="Graph.html" title="type parameter in Graph">T</a>&nbsp;vertex,
-                                 java.util.Set&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;visited,
-                                 java.util.Deque&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;stack)</pre>
-<div class="block">Вспомогательный метод для рекурсивного выполнения топологической сортировки.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vertex</code> - текущая вершина, для которой выполняется сортировка</dd>
-<dd><code>visited</code> - множество посещённых вершин</dd>
-<dd><code>stack</code> - стек, в который добавляются вершины после обработки</dd>
 </dl>
 </li>
 </ul>
