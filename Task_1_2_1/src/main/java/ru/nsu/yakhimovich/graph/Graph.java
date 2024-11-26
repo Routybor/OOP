@@ -1,5 +1,7 @@
 package ru.nsu.yakhimovich.graph;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.function.Function;
@@ -57,7 +59,21 @@ public interface Graph<T> {
      * @param parser   параметр, используемый для парсинга строкового представления вершины
      * @throws IOException если возникли ошибки при чтении файла
      */
-    void readFromFile(String fileName, Function<String, T> parser) throws IOException;
+    default void readFromFile(String fileName, Function<String, T> parser) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                if (parts.length == 2) {
+                    T vertex1 = parser.apply(parts[0]);
+                    T vertex2 = parser.apply(parts[1]);
+                    addVertex(vertex1);
+                    addVertex(vertex2);
+                    addEdge(vertex1, vertex2);
+                }
+            }
+        }
+    }
 
     /**
      * Выполнение топологической сортировки графа.
@@ -90,7 +106,7 @@ public interface Graph<T> {
      * @param visited множество посещённых вершин
      * @param stack   стек, в который добавляются вершины после обработки
      */
-    default void topologicalSortUtil(T vertex, Set<T> visited, Deque<T> stack) {
+    private void topologicalSortUtil(T vertex, Set<T> visited, Deque<T> stack) {
         visited.add(vertex);
         for (T neighbor : getNeighbors(vertex)) {
             if (!visited.contains(neighbor)) {

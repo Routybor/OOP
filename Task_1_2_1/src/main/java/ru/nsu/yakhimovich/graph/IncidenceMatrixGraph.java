@@ -1,10 +1,9 @@
 package ru.nsu.yakhimovich.graph;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
-import java.util.function.Function;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Реализация графа через матрицу инцидентности.
@@ -132,30 +131,6 @@ public class IncidenceMatrixGraph<T> implements Graph<T> {
             }
         }
         return neighbors;
-    }
-
-    /**
-     * Чтение графа из файла.
-     *
-     * @param fileName имя файла
-     * @param parser   функция для преобразования строки в объект типа T
-     * @throws IOException ошибка чтения
-     */
-    @Override
-    public void readFromFile(String fileName, Function<String, T> parser) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(" ");
-                if (parts.length == 2) {
-                    T fromVertex = parser.apply(parts[0]);
-                    T toVertex = parser.apply(parts[1]);
-                    addVertex(fromVertex);
-                    addVertex(toVertex);
-                    addEdge(fromVertex, toVertex);
-                }
-            }
-        }
     }
 
     /**

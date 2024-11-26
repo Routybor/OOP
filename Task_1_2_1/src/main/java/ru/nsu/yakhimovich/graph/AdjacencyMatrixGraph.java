@@ -1,10 +1,6 @@
 package ru.nsu.yakhimovich.graph;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
-import java.util.function.Function;
 
 /**
  * Реализация графа через матрицу смежности.
@@ -108,30 +104,6 @@ public class AdjacencyMatrixGraph<T> implements Graph<T> {
             }
         }
         return neighbors;
-    }
-
-    /**
-     * Получение графа из файла.
-     *
-     * @param fileName имя файла
-     * @param parser   функция для преобразования строки в объект типа T
-     * @throws IOException ошибка чтения
-     */
-    @Override
-    public void readFromFile(String fileName, Function<String, T> parser) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(" ");
-                if (parts.length == 2) {
-                    T vertex1 = parser.apply(parts[0]);
-                    T vertex2 = parser.apply(parts[1]);
-                    addVertex(vertex1);
-                    addVertex(vertex2);
-                    addEdge(vertex1, vertex2);
-                }
-            }
-        }
     }
 
     /**
