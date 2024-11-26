@@ -22,28 +22,31 @@ public class SubstringSearch {
      */
     public static List<Integer> find(String fileName, String searchString) throws IOException {
         List<Integer> positions = new ArrayList<>();
-        int bufSize = 4096;
+        int bufSize = 4194304;
+        int charsRead;
+        int curIdx;
+        int startIdx;
+        int start;
         char[] buffer = new char[bufSize];
         int overlap = searchString.length() - 1; // Перекрытие для разорванной подстроки
         StringBuilder previous = new StringBuilder(); // Для сохранения предыдущего блока
 
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8))) {
-            int curIdx = 0;
-            int charsRead;
+            curIdx = 0;
 
             while ((charsRead = reader.read(buffer)) != -1) {
                 String curBlock = new String(buffer, 0, charsRead);
                 StringBuilder combinedBlock = new StringBuilder(previous).append(curBlock);
 
-                int startIdx = 0;
+                startIdx = 0;
                 while ((startIdx = combinedBlock.indexOf(searchString, startIdx)) != -1) {
                     positions.add(curIdx + startIdx - previous.length());
                     startIdx += 1; // Сдвиг для поиска следующего вхождения
                 }
 
                 // Сохранение последних символов для перекрытия
-                int start = Math.max(combinedBlock.length() - overlap, 0);
+                start = Math.max(combinedBlock.length() - overlap, 0);
                 previous = new StringBuilder(combinedBlock.substring(start));
                 curIdx += charsRead;
             }
