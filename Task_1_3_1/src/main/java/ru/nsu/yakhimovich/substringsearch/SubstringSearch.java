@@ -1,5 +1,4 @@
 package ru.nsu.yakhimovich.substringsearch;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,16 +14,16 @@ public class SubstringSearch {
     /**
      * Метод поиска подстроки в данном файле.
      *
-     * @param fileName     данный файл
+     * @param fileName данный файл
      * @param searchString строка, которую следует найти
      * @return массив позиций, на которых находится данная подстрока
      * @throws IOException ошибка чтения
      */
-    public static List<Integer> find(String fileName, String searchString) throws IOException {
-        List<Integer> positions = new ArrayList<>();
+    public static List<Long> find(String fileName, String searchString) throws IOException {
+        List<Long> positions = new ArrayList<>();
         int bufSize = 4194304;
         int charsRead;
-        int curIdx;
+        long curIdx;
         int startIdx;
         int start;
         char[] buffer = new char[bufSize];
