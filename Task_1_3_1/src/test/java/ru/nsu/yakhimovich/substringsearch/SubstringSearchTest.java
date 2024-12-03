@@ -1,5 +1,6 @@
 package ru.nsu.yakhimovich.substringsearch;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,16 +67,24 @@ public class SubstringSearchTest {
         String fileName = "test_large.txt";
         ArrayList<Long> expected = new ArrayList<>();
         expected.add(4_000_000_000L);
-        try (FileWriter writer = new FileWriter(fileName)) {
-            for (long i = 0L; i < 500_000_000L; i++) {
-                writer.write("无知很酷无知很酷");
+
+        try {
+            try (FileWriter writer = new FileWriter(fileName)) {
+                for (long i = 0L; i < 500_000_000L; i++) {
+                    writer.write("无知很酷无知很酷");
+                }
+                writer.write("Hello");
+            } catch (IOException e) {
+                System.err.println("File write error");
+                e.printStackTrace();
             }
-            writer.write("Hello");
-        } catch (IOException e) {
-            System.err.println("File write error");
-            e.printStackTrace();
+            List<Long> res = SubstringSearch.find(fileName, "Hello");
+            Assertions.assertEquals(expected, res);
+        } finally {
+            File file = new File(fileName);
+            if (file.exists() && !file.delete()) {
+                System.err.println("Failed to delete test file: " + fileName);
+            }
         }
-        List<Long> res = SubstringSearch.find(fileName, "Hello");
-        Assertions.assertEquals(expected, res);
     }
 }
