@@ -98,7 +98,7 @@ public abstract class AbstractStrGraphTest {
 
     @Test
     public void testReadFromFile() throws IOException {
-        graph.readFromFile("src/test/resources/test1.txt", s -> s);
+        graph.readFromFile("test1.txt", s -> s);
 
         Assertions.assertEquals(List.of("B"), graph.getNeighbors("A"));
         Assertions.assertEquals(List.of("C"), graph.getNeighbors("B"));

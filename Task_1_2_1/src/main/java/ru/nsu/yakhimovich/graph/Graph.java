@@ -1,8 +1,9 @@
 package ru.nsu.yakhimovich.graph;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.function.Function;
 
@@ -60,20 +61,25 @@ public interface Graph<T> {
      * @throws IOException если возникли ошибки при чтении файла
      */
     default void readFromFile(String fileName, Function<String, T> parser) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(" ");
-                if (parts.length == 2) {
-                    T vertex1 = parser.apply(parts[0]);
-                    T vertex2 = parser.apply(parts[1]);
-                    addVertex(vertex1);
-                    addVertex(vertex2);
-                    addEdge(vertex1, vertex2);
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName)) {
+            assert inputStream != null;
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(" ");
+                    if (parts.length == 2) {
+                        T vertex1 = parser.apply(parts[0]);
+                        T vertex2 = parser.apply(parts[1]);
+                        addVertex(vertex1);
+                        addVertex(vertex2);
+                        addEdge(vertex1, vertex2);
+                    }
                 }
             }
         }
     }
+
 
     /**
      * Выполнение топологической сортировки графа.
