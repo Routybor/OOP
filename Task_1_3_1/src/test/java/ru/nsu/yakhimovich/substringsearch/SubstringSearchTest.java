@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +16,8 @@ import org.junit.jupiter.api.Test;
  * Тесты поиска подстроки.
  */
 public class SubstringSearchTest {
+
+    private final Set<String> testFiles = new HashSet<>();
 
     /**
      * Создание файла для теста.
@@ -24,6 +30,18 @@ public class SubstringSearchTest {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(content);
         }
+        testFiles.add(fileName);
+    }
+
+    @AfterEach
+    void cleanUpTestFiles() {
+        for (String fileName : testFiles) {
+            File file = new File(fileName);
+            if (file.exists() && !file.delete()) {
+                System.err.println("Failed to delete test file: " + fileName);
+            }
+        }
+        testFiles.clear();
     }
 
     @Test
@@ -68,23 +86,19 @@ public class SubstringSearchTest {
         ArrayList<Long> expected = new ArrayList<>();
         expected.add(4_000_000_000L);
 
-        try {
-            try (FileWriter writer = new FileWriter(fileName)) {
-                for (long i = 0L; i < 500_000_000L; i++) {
-                    writer.write("无知很酷无知很酷");
-                }
-                writer.write("Hello");
-            } catch (IOException e) {
-                System.err.println("File write error");
-                e.printStackTrace();
+        createTestFile(fileName, "");
+
+        try (FileWriter writer = new FileWriter(fileName)) {
+            for (long i = 0L; i < 500_000_000L; i++) {
+                writer.write("无知很酷无知很酷");
             }
-            List<Long> res = SubstringSearch.find(fileName, "Hello");
-            Assertions.assertEquals(expected, res);
-        } finally {
-            File file = new File(fileName);
-            if (file.exists() && !file.delete()) {
-                System.err.println("Failed to delete test file: " + fileName);
-            }
+            writer.write("Hello");
+        } catch (IOException e) {
+            System.err.println("File write error");
+            e.printStackTrace();
         }
+
+        List<Long> res = SubstringSearch.find(fileName, "Hello");
+        Assertions.assertEquals(expected, res);
     }
 }
