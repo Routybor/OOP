@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.yakhimovich.gradesbook","l":"Grade"},{"p":"ru.nsu.yakhimovich.gradesbook","l":"GradesBook"},{"p":"ru.nsu.yakhimovich.gradesbook","l":"Term"},{"p":"ru.nsu.yakhimovich.gradesbook","l":"Types"}];updateSearchResults();
