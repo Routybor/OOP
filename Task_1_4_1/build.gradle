@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group = 'ru.nsu.yakhimovich.gradesbook'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+compileJava.options.encoding = 'UTF-8' /* кодировка компилируемого кода */
+javadoc.options.encoding = 'UTF-8' /* кодировка документации */
+compileTestJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
