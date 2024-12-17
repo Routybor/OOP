@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
- * Тесты.
+ * Тесты тесты.
  */
 public class GradesBookTest {
     GradesBook gradesBook;
