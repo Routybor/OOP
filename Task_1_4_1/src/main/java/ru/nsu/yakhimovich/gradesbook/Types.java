@@ -10,6 +10,6 @@ public enum Types {
     EXAM,
     DIF_CREDIT,
     CREDIT,
-    PRACTICE_DEFENSE,
-    VKR_DEFENSE
+    PRACTICE,
+    VKR
 }

@@ -13,8 +13,8 @@ public class Term {
 
     Term(int taskGrades, int testGrades, int colloqGrades,
          int examGrades, int difCreditGrades,
-         int creditGrades, int practiceDefenseGrades,
-         int vkrDefenseGrades) {
+         int creditGrades, int practiceGrades,
+         int vkrGrades) {
         termRecord = new HashMap<>();
         termRecord.put(Types.TASK, new Grade(taskGrades));
         termRecord.put(Types.TEST, new Grade(testGrades));
@@ -22,8 +22,8 @@ public class Term {
         termRecord.put(Types.EXAM, new Grade(examGrades));
         termRecord.put(Types.DIF_CREDIT, new Grade(difCreditGrades));
         termRecord.put(Types.CREDIT, new Grade(creditGrades));
-        termRecord.put(Types.PRACTICE_DEFENSE, new Grade(practiceDefenseGrades));
-        termRecord.put(Types.VKR_DEFENSE, new Grade(vkrDefenseGrades));
+        termRecord.put(Types.PRACTICE, new Grade(practiceGrades));
+        termRecord.put(Types.VKR, new Grade(vkrGrades));
     }
 
     /**
@@ -114,7 +114,7 @@ public class Term {
      * Просто для одного случая получение оценки ВКР.
      */
     public int getVkrMark() {
-        return termRecord.get(Types.VKR_DEFENSE)
+        return termRecord.get(Types.VKR)
                 .getValues()
                 .stream()
                 .findFirst()
