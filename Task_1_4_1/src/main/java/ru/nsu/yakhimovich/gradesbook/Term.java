@@ -12,9 +12,9 @@ public class Term {
 
 
     Term(int taskGrades, int testGrades, int colloqGrades,
-            int examGrades, int difCreditGrades,
-            int creditGrades, int practiceDefenseGrades,
-            int vkrDefenseGrades) {
+         int examGrades, int difCreditGrades,
+         int creditGrades, int practiceDefenseGrades,
+         int vkrDefenseGrades) {
         termRecord = new HashMap<>();
         termRecord.put(Types.TASK, new Grade(taskGrades));
         termRecord.put(Types.TEST, new Grade(testGrades));
@@ -28,6 +28,7 @@ public class Term {
 
     /**
      * Объект в строку.
+     *
      * @return строка
      */
     public String toText() {
@@ -41,6 +42,7 @@ public class Term {
 
     /**
      * Строка в объект.
+     *
      * @param text строка
      * @return объект
      */
@@ -70,6 +72,7 @@ public class Term {
 
     /**
      * Средний балл.
+     *
      * @return значение
      */
     public double getTermAverageScore() {
@@ -82,7 +85,9 @@ public class Term {
                 .orElse(0);
     }
 
-    /**Проверка на наличие оценок диф зачёта и экзамена.*/
+    /**
+     * Проверка на наличие оценок диф зачёта и экзамена.
+     */
     public boolean hasMarks(int examMark, int difCreditMark) {
         Optional<Integer> res = termRecord.values()
                 .stream()
@@ -98,12 +103,16 @@ public class Term {
         return res.isPresent() || res1.isPresent();
     }
 
-    /**Просто получение записи для работы со стримами.*/
+    /**
+     * Просто получение записи для работы со стримами.
+     */
     public Map<Types, Grade> getTermRecord() {
         return termRecord;
     }
 
-    /**Просто для одного случая получение оценки ВКР.*/
+    /**
+     * Просто для одного случая получение оценки ВКР.
+     */
     public int getVkrMark() {
         return termRecord.get(Types.VKR_DEFENSE)
                 .getValues()
@@ -112,7 +121,9 @@ public class Term {
                 .orElse(0);
     }
 
-    /**Добавление оценки.*/
+    /**
+     * Добавление оценки.
+     */
     public void addGradeTerm(String subject, int grade, Types controlType) {
         termRecord.get(controlType).addGrade(grade, subject);
     }

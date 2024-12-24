@@ -21,6 +21,7 @@ public class GradesBook {
 
     /**
      * Возможность бюджета.
+     *
      * @param currentTerm семестр
      * @return True/False
      */
@@ -34,6 +35,7 @@ public class GradesBook {
 
     /**
      * Возможность красного диплома.
+     *
      * @param currentTerm семестр
      * @return True/False
      */
@@ -77,10 +79,11 @@ public class GradesBook {
 
     /**
      * Добавление оценки.
-     * @param term семестр
+     *
+     * @param term    семестр
      * @param subject предмет
-     * @param grade оценка
-     * @param type тип
+     * @param grade   оценка
+     * @param type    тип
      */
     public void addGrade(int term, String subject,
                          int grade, Types type) {
@@ -89,6 +92,7 @@ public class GradesBook {
 
     /**
      * Средний балл.
+     *
      * @return значение.
      */
     public double getAverageScore() {
@@ -101,6 +105,7 @@ public class GradesBook {
 
     /**
      * Большая стипендия.
+     *
      * @param currentTerm семестр
      * @return True/False
      */
@@ -123,6 +128,7 @@ public class GradesBook {
 
     /**
      * Сохранение в файл.
+     *
      * @param filePath путь
      * @throws IOException ошибка
      */
@@ -137,6 +143,7 @@ public class GradesBook {
 
     /**
      * Из файла.
+     *
      * @param filePath путь
      * @return зачетка
      * @throws IOException ошибка
