@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -53,7 +51,7 @@ public class GradesBookTest {
     void cantBudgetTransferTest() {
         gradesBook.addGrade(2, "English", 3, Types.DIF_CREDIT);
         assertFalse(gradesBook.canBudgetTransfer(2),
-                "Студент не должен быть допущен к переводу на бюджет при низких оценках");
+                "Студент НЕ должен быть допущен к переводу на бюджет при низких оценках");
     }
 
     @Test
@@ -66,7 +64,7 @@ public class GradesBookTest {
     void cantGetRedDiplomaTest() {
         gradesBook.addGrade(3, "PE", 3, Types.EXAM);
         assertFalse(gradesBook.canGetRedDiploma(3),
-                "Студент не должен быть допущен к получению красного диплома при низких оценках");
+                "Студент НЕ должен быть допущен к получению красного диплома при низких оценках");
     }
 
     @Test
@@ -84,7 +82,7 @@ public class GradesBookTest {
 
         gradesBook.addGrade(2, "ORG", 4, Types.DIF_CREDIT);
         assertFalse(gradesBook.canGetIncreasedScholarship(2),
-                "Студент не должен быть допущен к получению повышенной стипендии после снижения оценок");
+                "Студент НЕ должен быть допущен к повышенной стипендии после снижения оценок");
     }
 
     @Test
