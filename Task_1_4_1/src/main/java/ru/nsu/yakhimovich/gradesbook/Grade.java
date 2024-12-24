@@ -18,6 +18,7 @@ public class Grade {
 
     /**
      * Получение среднего арифметического.
+     *
      * @return значение
      */
     public double getAverage() {
@@ -30,6 +31,7 @@ public class Grade {
 
     /**
      * Получение значений оценок.
+     *
      * @return оценки
      */
     public Collection<Integer> getValues() {
@@ -38,7 +40,8 @@ public class Grade {
 
     /**
      * Добавление оценки.
-     * @param grade значение
+     *
+     * @param grade   значение
      * @param subject предмет
      */
     public void addGrade(int grade, String subject) {
@@ -50,6 +53,7 @@ public class Grade {
 
     /**
      * Объект в строку.
+     *
      * @return строка
      */
     public String toText() {
@@ -67,6 +71,7 @@ public class Grade {
 
     /**
      * Строка в объект.
+     *
      * @param text строка
      * @return объект
      */
